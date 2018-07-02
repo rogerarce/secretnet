@@ -24,8 +24,8 @@ class LoginController extends Controller
      * Where to redirect users after login.
      *
      * @var string
+     * protected $redirectTo = '/home';
      */
-    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -35,5 +35,17 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     *
+     */
+    protected function authenticated($request, $user)
+    {
+        if ($user->isAdmin()) {
+            return redirect('admin');
+        }
+
+        return redirect('user');
     }
 }
