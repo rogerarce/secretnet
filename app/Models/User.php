@@ -31,4 +31,9 @@ class User extends Authenticatable
     {
         return $this->user_type == 'admin';
     }
+
+    public function pin()
+    {
+        return $this->hasOne(Pins::class, 'id', 'user_id');
+    }
 }
