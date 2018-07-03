@@ -36,4 +36,18 @@ class Pins extends Controller
 
         return Pin::find($pin->id)->load('user', 'assignedTo', 'type');
     }
+
+    /**
+     *
+     */
+    public function checkPin(Request $request)
+    {
+        $pin = Pin::where('pin', $request->activation_code)->first();
+    
+        if ($pin->status == 'active') {
+            return abor(401, 'Pin is already used');
+        }
+
+        return response()->json($pin->load('type'));
+    }
 }

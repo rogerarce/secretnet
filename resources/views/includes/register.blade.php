@@ -29,7 +29,16 @@
         <input class="form-control" type="string" name="mobile">
     </div>
     <div class="form-group">
-        <button class="btn btn-info">Signup</button>
+        <label for="">Account Type</label>
+        <select id="user_type" class="form-control" name="account_type" disabled>
+            <option selected disabled>--select--</option>
+            @foreach ($types as $type)
+                <option value="{{ $type->id }}">{{ $type->type }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group">
+        <button id="signup" class="btn btn-info">Signup</button>
         <a href="javascript:void(0)" id="btnlogin">Login</a>
     </div>
 </form>
