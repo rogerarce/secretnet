@@ -8,7 +8,7 @@ class AccountType extends Model
 {
     protected $primaryKey = "id";
 
-    protected $table = "account_type";
+    protected $table = "account_types";
 
     protected $fillable = [
         "type",
