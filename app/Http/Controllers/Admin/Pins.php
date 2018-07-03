@@ -16,7 +16,7 @@ class Pins extends Controller
      */
     public function index()
     {
-        return Pin::all();
+        return response()->json(Pin::all()->load('user'));
     }
 
     /**
@@ -27,12 +27,11 @@ class Pins extends Controller
      */
     public function store(Request $request)
     {
-        $pin = new Pin([
-            'pin'     => substr(md5(microtime() . rand()), 0, 10),
-            'status'  => 'inactive',
-            'user_id' => auth()->user()->id,
+        $pin = Pin::create([
+            'pin'    => substr(md5(microtime() . rand()), 0, 10),
+            'status' => 'inactive',
         ]);
 
-        $pin->save();
+        return $pin;
     }
 }

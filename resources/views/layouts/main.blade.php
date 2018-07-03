@@ -109,6 +109,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{{ asset('js/sb-admin-2.js') }}"></script>
+    <script src="{{ asset('js/angular.min.js') }}"></script>
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     
     @yield('scripts')
