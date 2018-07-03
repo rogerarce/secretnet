@@ -1,0 +1,3 @@
+(function(){
+  //$("#pinstbl").DataTable()
+})()

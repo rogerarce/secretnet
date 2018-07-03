@@ -6,7 +6,7 @@
 </div>
 
 <div class="row">
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover" id="pinstbl">
         <thead>
             <tr>
                 <th>ID</th>
@@ -40,6 +40,10 @@
     </table>
 </div>
 
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/admin/main.js') }}"></script>
 @endsection
 
 <!-- Navigation & Others -->
