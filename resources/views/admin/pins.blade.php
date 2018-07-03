@@ -2,10 +2,16 @@
 @section('content')
 <div class="page-header">
     <h1>Pins</h1>
-    <button class="btn btn-info"><i class="fa fa-plus"></i></button>
 </div>
 
-<div class="row">
+<div class="row" ng-app="adminapp" ng-controller="Pins">
+    <form class="form form-inline" ng-submit="generate()">
+        <button class="btn btn-primary">
+            Generate Token &nbsp;
+            <i class="fa fa-plus"></i>
+        </button>
+    </form>
+    <br />
     <table class="table table-bordered table-hover" id="pinstbl">
         <thead>
             <tr>
@@ -17,25 +23,16 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($pins as $pin)
-            <tr>
-                <td>{{ $pin->id }}</td>
-                <td>{{ strtoupper($pin->pin) }}</td>
+            <tr ng-repeat="pin in pins track by $index" ng-cloak>
+                <td>@{{ pin.id }}</td>
+                <td>@{{ pin.pin }}</td>
                 <td>
-                    @if ($pin->status === 'active')
-                        <span class="label label-success">{{ $pin->status }}</span>
-                    @else
-                        <span class="label label-default">{{ $pin->status }}</span>
-                    @endif
+                    <span class="label label-success" ng-show="pin.status == 'active'">@{{ pin.status }}</span>
+                    <span class="label label-default" ng-show="pin.status == 'inactive'">@{{ pin.status }}</span>
                 </td>
-                <td>
-                    @if ($pin->user_id && $pin->activatedBy())
-                        <span>{!! $pin->activatedBy()->first()->email !!}</span>
-                    @endif
-                </td>
-                <td>{{ $pin->created_at }}</td>
+                <td>@{{ pin.user.email }}</td>
+                <td>@{{ pin.created_at }}</td>
             </tr>
-            @endforeach
         </tbody>
     </table>
 </div>
@@ -43,7 +40,7 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/admin/main.js') }}"></script>
+    @include('includes.adminjs')
 @endsection
 
 <!-- Navigation & Others -->
