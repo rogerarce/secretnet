@@ -16,7 +16,7 @@ class Pins extends Controller
      */
     public function index()
     {
-        return response()->json(Pin::all()->load('user'));
+        return response()->json(Pin::all()->load('user', 'assignedTo', 'type'));
     }
 
     /**
@@ -28,10 +28,12 @@ class Pins extends Controller
     public function store(Request $request)
     {
         $pin = Pin::create([
-            'pin'    => substr(md5(microtime() . rand()), 0, 10),
-            'status' => 'inactive',
+            'pin'             => substr(md5(microtime() . rand()), 0, 10),
+            'status'          => 'inactive',
+            'account_type_id' => $request->account_type,
+            'assign_to'       => 0,
         ]);
 
-        return $pin;
+        return Pin::find($pin->id)->load('user', 'assignedTo', 'type');
     }
 }

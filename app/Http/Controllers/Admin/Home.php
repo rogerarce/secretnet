@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Pins as Pin;
+use App\Models\AccountType;
 
 class Home extends Controller
 {
@@ -21,7 +22,7 @@ class Home extends Controller
     public function pins()
     {
         return view('admin.pins', [
-            'pins' => Pin::all(),
+            'account_types' => AccountType::all(),
         ]);
     }
 }
