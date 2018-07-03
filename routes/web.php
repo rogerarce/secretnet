@@ -11,13 +11,16 @@
 |
 */ 
 Route::get('/', function () {
-    return view('guest.register');
+    return view('guest.register', [
+        'types' => \App\Models\AccountType::all(),
+    ]);
 });
 
 // Guest Routes
 Route::group(['middleware' => 'guest'], function() {
     Route::post('register', 'Recruit\AccountManager@register')->name('register');
     Route::post('login', 'Recruit\AccountManager@login')->name('login');
+    Route::get('checkpin', 'Admin\Pins@checkPin')->name('checkPin');
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'namespace' => 'Admin'], function() {
