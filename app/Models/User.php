@@ -46,4 +46,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(Tree::class, 'user_id', 'id');
     }
+
+    public function accountType()
+    {
+        return $this->hasOne(AccountType::class, 'id', 'account_type');
+    }
+    
+    public function wallet()
+    {
+        return $this->hasOne(Wallet::class, 'user_id', 'id');
+    }
 }

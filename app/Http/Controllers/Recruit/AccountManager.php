@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Recruit;
 
 use Illuminate\Http\Request;
+use App\Helpers\ProfitShare;
 use App\Http\Requests\RecruitRegister as Recruit;
 use App\Http\Controllers\Controller;
 
@@ -66,6 +67,9 @@ class AccountManager extends Controller
     public function registerRecruit(Recruit $request)
     {
         $pin = $this->_getActivationCode($request->activation_code);
+
+        // Starts profit sharing
+        $this->profitShare($pin->type);
 
         // Create User
         $user_data = $this->_getUserData($request, $pin);
@@ -133,5 +137,16 @@ class AccountManager extends Controller
         $pin = Pin::where('pin', $request->activation_code)->first();
 
         return $pin && $pin->status == 'inactive';
+    }
+
+    /**
+     * Initiates Profit Sharing;
+     *
+     * @param Object
+     */
+    private function profitShare($account_type)
+    {
+        $profitshare = new ProfitShare($account_type);
+        $profitshare->start();
     }
 }
