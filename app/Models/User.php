@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'address', 'account_type', 'user_type'
+        'first_name', 'last_name', 'email', 'password', 'address', 'account_type', 'user_type', 'mobile',
     ];
 
     /**
@@ -27,6 +27,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function fullName()
+    {
+        return strtoupper($this->first_name . ' ' . $this->last_name);
+    }
+
     public function isAdmin()
     {
         return $this->user_type == 'admin';
@@ -35,5 +40,10 @@ class User extends Authenticatable
     public function pin()
     {
         return $this->hasOne(Pins::class, 'id', 'user_id');
+    }
+
+    public function tree()
+    {
+        return $this->hasOne(Tree::class, 'user_id', 'id');
     }
 }

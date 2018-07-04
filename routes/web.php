@@ -41,4 +41,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'namespace' => 'Recrui
     Route::get('pins', 'Navigation@pins')->name('recruitpins');
     Route::get('tree', 'Navigation@tree')->name('recruittree');
     Route::get('recruit', 'Navigation@recruit')->name('recruitrecruit');
+
+
+    Route::post('register_recruit', 'AccountManager@registerRecruit')->name('registerrecruit');
 });
