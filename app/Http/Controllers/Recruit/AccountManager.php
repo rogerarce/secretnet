@@ -27,8 +27,11 @@ class AccountManager extends Controller
         $user_data = $request->except(['activation_code']);
         $user_data['password'] = \Hash::make($request->password);
         $user_data['account_type'] = $pin->type->id;
+        $user_data['user_type'] = 'customer';
 
         $user = User::create($user_data);
+
+        $pin->update(['status' => 'active']);
 
         $credentials = $request->only(['email', 'password']);
         if (Auth::attempt($credentials)) {
