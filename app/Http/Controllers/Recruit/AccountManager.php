@@ -22,8 +22,11 @@ class AccountManager extends Controller
             return redirect()->back()->withErrors(['Invalid Activation Code!']);
         }
 
+        $pin = Pin::with('type')->where('pin', $request->activation_code)->first();
+
         $user_data = $request->except(['activation_code']);
         $user_data['password'] = \Hash::make($request->password);
+        $user_data['account_type'] = $pin->type->id;
 
         $user = User::create($user_data);
 

@@ -25,7 +25,7 @@
       dataType: 'json',
       success: function(response) {
         _setAccountType(response.type)
-        $("#signup").attr('disabled', '')
+        $("#signup").prop('disabled', false)
       },
       error: function(err) {
         alert('Invalid Activation Code!')

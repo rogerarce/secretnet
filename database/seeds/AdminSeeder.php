@@ -19,6 +19,7 @@ class AdminSeeder extends Seeder
             'last_name' => 'admin',
             'password' => bcrypt(env('ADMIN_PASSWORD')),
             'user_type' => 'admin',
+            'mobile' => '0912313123',
         ]);
     }
 }
