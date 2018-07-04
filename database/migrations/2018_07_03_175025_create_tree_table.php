@@ -13,16 +13,18 @@ class CreateTreeTable extends Migration
      */
     public function up()
     {
-        Schema::create('tree', function (Blueprint $table) {
+        Schema::create('tree', function(Blueprint $table) {
             $table->increments('id');
             $table->enum('position',['left', 'right']);
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')
                     ->references('id')
                     ->on('users');
-            $table->integer('left_user_id');
-            $table->integer('right_user_id');
+
+            $table->integer('left_user_id')->nullable();
+            $table->integer('right_user_id')->nullable();
             $table->integer('direct_referral_id');
+
             $table->timestamps();
         });
     }
