@@ -17,6 +17,7 @@ use App\Models\DirectReferral;
 use App\Traits\ConnectedTables;
 
 use Auth;
+use Toastr;
 
 class AccountManager extends Controller
 {
@@ -76,6 +77,11 @@ class AccountManager extends Controller
      */
     public function registerRecruit(Recruit $request)
     {
+        if (!$this->_checkPin($request)) {
+            Toastr::warning('Access Token is invalid or is used by another user', 'Invalid Key');
+            return redirect()->back();
+        }
+
         $pin = $this->_getActivationCode($request->activation_code);
 
         // Starts profit sharing
