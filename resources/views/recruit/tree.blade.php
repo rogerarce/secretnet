@@ -13,15 +13,15 @@
     <br>
     <div class="row">
         <div class="col-md-6 text-center">
-            @if ($user->tree->left)
+            @if ($user = $tree['tree']['left'])
                 <h1><i class="fa fa-user"></i></h1>       
-                <b>{{ $user->tree->left->fullName() }}</b>
+                <b>{{ $user->fullName() }}</b>
             @endif
         </div>
         <div class="col-md-6 text-center">
-            @if ($user->tree->right)
+            @if ($user = $tree['tree']['right'])
                 <h1><i class="fa fa-user"></i></h1>       
-                <b>{{ $user->tree->right->fullName() }}</b>
+                <b>{{ $user->fullName() }}</b>
             @endif
         </div>
     </div>
@@ -30,29 +30,29 @@
     <div class="row">
         <div class="left">
             <div class="col-md-3 text-center">
-                @if ($left = $user->tree->left->tree->left)
-                <h1><i class="fa fa-user"></i></h1>       
-                <b>{{ $left->fullName() }}</b>
+                @if ($user = $tree['inner_left']['left'])
+                    <h1><i class="fa fa-user"></i></h1>       
+                    <b>{{ $user->fullName() }}</b>
                 @endif
             </div>
             <div class="col-md-3 text-center">
-                @if ($right = $user->tree->left->tree->right)
-                <h1><i class="fa fa-user"></i></h1>       
-                <b>{{ $right->fullName() }}</b>
+                @if ($user = $tree['inner_left']['right'])
+                    <h1><i class="fa fa-user"></i></h1>       
+                    <b>{{ $user->fullName() }}</b>
                 @endif
             </div>
         </div>
         <div class="right">
             <div class="col-md-3 text-center">
-                @if ($left = $user->tree->right->tree->left)
-                <h1><i class="fa fa-user"></i></h1>       
-                <b>{{ $left->fullName() }}</b>
+                @if ($user = $tree['inner_right']['left'])
+                    <h1><i class="fa fa-user"></i></h1>       
+                    <b>{{ $user->fullName() }}</b>
                 @endif
             </div>
             <div class="col-md-3 text-center">
-                @if ($right = $user->tree->right->tree->right)
-                <h1><i class="fa fa-user"></i></h1>       
-                <b>{{ $right->fullName() }}</b>
+                @if ($user = $tree['inner_right']['right'])
+                    <h1><i class="fa fa-user"></i></h1>       
+                    <b>{{ $user->fullName() }}</b>
                 @endif
             </div>
         </div>

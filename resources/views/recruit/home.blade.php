@@ -8,11 +8,11 @@
             <div class="panel-heading">
                 <h4>
                     <i class="fa fa-sun"></i>
-                    <b>Today's Income</b>
+                    <b>Direct Referral Bonus</b>
                 </h4>
             </div>
             <div class="panel-body">
-                <h1>₱ 0</h1>
+                <h1>₱ {{ $income_list['direct_referral'] }}</h1>
             </div>
         </div>  
     </div>
@@ -21,11 +21,11 @@
             <div class="panel-heading">
                 <h4>
                     <i class="fa fa-gem"></i>
-                    <b>Current Income</b>
+                    <b>Pairing Bonus</b>
                 </h4>
             </div>
             <div class="panel-body">
-                <h1>₱ 0</h1>
+                <h1>₱ {{ $income_list['pairing'] }}</h1>
             </div>
         </div>  
     </div>
@@ -38,7 +38,7 @@
                 </h4>
             </div>
             <div class="panel-body">
-                <h1>₱ 0</h1>
+                <h1>₱ {{ $income_list['package'] }}</h1>
             </div>
         </div>  
     </div>
@@ -51,7 +51,7 @@
                 </h4>
             </div>
             <div class="panel-body">
-                <h1>₱ 0</h1>
+                <h1>₱ {{ $income_list['total_income'] }}</h1>
             </div>
         </div>  
     </div>
