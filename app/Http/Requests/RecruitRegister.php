@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Toastr;
 
 class RecruitRegister extends FormRequest
 {
@@ -30,5 +32,16 @@ class RecruitRegister extends FormRequest
             'address'    => 'required|string',
             'mobile'     => 'required|string'
         ];
+    }
+
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            if ($validator->failed()) {
+                foreach ($validator->errors()->all() as $error) {
+                    Toastr::error($error, 'Failed', ['timeOut' => 100000]);
+                }
+            }
+        });
     }
 }

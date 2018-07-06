@@ -30,7 +30,7 @@ class Navigation extends Controller
         return view('recruit.pins');
     }
 
-    public function tree()
+    public function tree(Request $request)
     {
         $user = Auth::user()->load('tree','tree.left.tree.left','tree.left.tree.right','tree.right.tree.left','tree.right.tree.right');
         $result = $this->buildTree($user);
