@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Wallet::class, 'user_id', 'id');
     }
+
+    public function pairing()
+    {
+        return $this->hasOne(Pairing::class, 'user_id', 'id');
+    }
 }

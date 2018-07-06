@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Tree;
 use App\Models\Pins as Pin;
+use App\Models\Wallet;
 
 use Auth;
 
@@ -40,7 +41,7 @@ class AccountManager extends Controller
 
         $credentials = $request->only(['email', 'password']);
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('user/dashboard');
+            return redirect()->intended('user');
         }
     }
 
@@ -88,6 +89,12 @@ class AccountManager extends Controller
         } else {
             $tree = Tree::create($tree_data);
         }
+
+        Wallet::create([
+            "max_amount"     => $this->getMaxAmount($pin->type),
+            "current_amount" => 0,
+            "user_id"        => $user->id,
+        ]);
 
         // Activate Pin
         $pin->update(['status' => 'active']);
@@ -148,5 +155,23 @@ class AccountManager extends Controller
     {
         $profitshare = new ProfitShare($account_type);
         $profitshare->start();
+    }
+
+    private function getMaxAmount($type)
+    {
+        switch ($type->type) {
+            case "silver":
+                return 2000;
+            case "gold":
+                return 6500;
+            case "platinum":
+                return 7500;
+            case "diamond":
+                return 10500;
+            case "doublediamond":
+                return 15500;
+            default:
+                return 2000;
+        }
     }
 }

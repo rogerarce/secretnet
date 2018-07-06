@@ -46,14 +46,16 @@ class ProfitShare
             $shares = $user->accountType->shares;
             $total_amount = (float)$amount_per_share * (int)$shares;
             $wallet = $user->wallet;
-            $wallet->current_amount += $total_amount;
-            $wallet->save();
-                
-            Logs::create([
-                'user_id' => $user->id,
-                'action'  => 'profit',
-                'message' => $total_amount,
-            ]);
+            if ($wallet->current_amount < $wallet->max_amount) {
+                $wallet->current_amount += $total_amount;
+                $wallet->save();
+                    
+                Logs::create([
+                    'user_id' => $user->id,
+                    'action'  => 'profit',
+                    'message' => $total_amount,
+                ]);
+            }
         }
     }
 }
