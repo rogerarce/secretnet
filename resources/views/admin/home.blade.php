@@ -35,7 +35,7 @@
                         <i class="fa fa-piggy-bank fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">{{ $sales }}</div>
+                        <div class="huge">₱ {{ $sales }}</div>
                         <div>Total Sales on active Pins</div>
                     </div>
                 </div>

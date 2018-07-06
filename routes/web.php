@@ -10,11 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */ 
-Route::get('/', function () {
+Route::get('/register', function () {
     return view('guest.register', [
         'types' => \App\Models\AccountType::all(),
     ]);
-});
+})->name('register');
+
+Route::get('/', function() {
+    return view('guest.login');
+})->name('login');
 
 // Guest Routes
 Route::group(['middleware' => 'guest'], function() {
