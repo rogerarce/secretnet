@@ -15,10 +15,12 @@ class ConnectedUsers
 
     public function start()
     {
-        $this->getLeftConnections($this->initial_tree->left);
-        $this->getRightConnections($this->initial_tree->right);
+        if ($this->initial_tree) {
+            $this->getLeftConnections($this->initial_tree->left);
+            $this->getRightConnections($this->initial_tree->right);
 
-        return $this->users;
+            return $this->users;
+        }
     }
 
     /**

@@ -88,9 +88,11 @@ class Pairing
 
     private function checkIfStale($pairing)
     {
-        if (!$pairing->updated_at->isToday()) {
-            $pairing->todays_match_count = 0;
-            $pairing->save();
+        if ($pairing) {
+            if (!$pairing->updated_at->isToday()) {
+                $pairing->todays_match_count = 0;
+                $pairing->save();
+            }
         }
     }
 }

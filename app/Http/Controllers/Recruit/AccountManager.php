@@ -14,10 +14,14 @@ use App\Models\Pins as Pin;
 use App\Models\Wallet;
 use App\Models\DirectReferral;
 
+use App\Traits\ConnectedTables;
+
 use Auth;
 
 class AccountManager extends Controller
 {
+    use ConnectedTables;
+
     private $user_info = ['email','first_name','last_name','address','mobile'];
     private $tree_info = ['position', 'direct_referral_id'];
 
@@ -42,6 +46,9 @@ class AccountManager extends Controller
         $pin->update(['status' => 'active']);
 
         $credentials = $request->only(['email', 'password']);
+            
+        $this->createInitials($user);
+
         if (Auth::attempt($credentials)) {
             return redirect()->intended('user');
         }

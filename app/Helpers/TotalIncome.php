@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 class TotalIncome
 {
-    private function $user;
+    private $user;
 
     public function __construct($user)
     {
@@ -13,7 +13,11 @@ class TotalIncome
 
     public function totalIncome()
     {
+        $pairing = $this->pairingBonus();
+        $package = $this->packageBonus();
+        $direct_referral = $this->directReferralBonus();
 
+        return $total = (float)$pairing + (float)$package + (float)$direct_referral;
     }
 
     /**
@@ -39,6 +43,7 @@ class TotalIncome
      */
     public function directReferralBonus()
     {
-
+        $direct_referral = $this->user->directReferral;
+        return $direct_referral->total_earning;
     }
 }
