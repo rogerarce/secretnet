@@ -27,6 +27,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'namespace' => 'Admin
     Route::get('/', 'Home@home')->name('adminhome'); 
     Route::get('/users', 'Home@users')->name('adminusers'); 
     Route::get('/pins', 'Home@pins')->name('adminpins'); 
+    Route::get('/sales', 'Home@sales')->name('adminsales'); 
+
     Route::post('logout', function() {
         \Auth::logout();
         return redirect('/');
