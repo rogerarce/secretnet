@@ -7,11 +7,16 @@ use App\Http\Controllers\Controller;
 use App\Helpers\ConnectedUsers;
 use App\Helpers\TotalIncome;
 use App\Traits\TreeBuilder;
+use App\Traits\BreadCrumb;
+
+use App\Models\User;
+
 use Auth;
 
 class Navigation extends Controller
 {
     use TreeBuilder;
+    use BreadCrumb;
 
     public function home()
     {
@@ -32,9 +37,11 @@ class Navigation extends Controller
 
     public function tree(Request $request)
     {
-        $user = Auth::user()->load('tree','tree.left.tree.left','tree.left.tree.right','tree.right.tree.left','tree.right.tree.right');
+        $user = $request->user_id ? User::find($request->user_id) : Auth::user();
+        $user = $this->getTree($user);
         $result = $this->buildTree($user);
-        return view('recruit.tree', ['user' => $user, 'tree' => $result]);
+        $breadcrumb = $this->breadCrumbHandler($user->id);
+        return view('recruit.tree', ['user' => $user, 'tree' => $result, 'breadcrumb' => $breadcrumb]);
     }
 
     public function recruit(Request $request)
@@ -44,5 +51,10 @@ class Navigation extends Controller
         $result = $connection->start(); 
         $result[] = auth()->user();
         return view('recruit.recruit', ['users' => $result]);
+    }
+
+    protected function getTree($user)
+    {
+        return $user->load('tree','tree.left.tree.left','tree.left.tree.right','tree.right.tree.left','tree.right.tree.right');
     }
 }

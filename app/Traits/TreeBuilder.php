@@ -25,6 +25,7 @@ trait TreeBuilder
         ];
 
         $data = [
+            'first'       => $user,
             'tree'        => $initial_tree,
             'inner_left'  => $inner_left_tree,
             'inner_right' => $inner_right_tree,
