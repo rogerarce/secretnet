@@ -61,4 +61,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Pairing::class, 'user_id', 'id');
     }
+
+    public function directReferral()
+    {
+        return $this->hasOne(DirectReferral::class, 'user_id', 'id');
+    }
 }

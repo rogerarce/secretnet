@@ -46,16 +46,47 @@ class ProfitShare
             $shares = $user->accountType->shares;
             $total_amount = (float)$amount_per_share * (int)$shares;
             $wallet = $user->wallet;
-            if ($wallet->current_amount < $wallet->max_amount) {
-                $wallet->current_amount += $total_amount;
-                $wallet->save();
-                    
-                Logs::create([
-                    'user_id' => $user->id,
-                    'action'  => 'profit',
-                    'message' => $total_amount,
-                ]);
+            if ($wallet) {
+                if ($wallet->current_amount < $wallet->max_amount) {
+                    $wallet->current_amount += $total_amount;
+                    $wallet->save();
+                }
+            } else {
+                $this->createWallet($user, $total_amount);
             }
+                
+            Logs::create([
+                'user_id' => $user->id,
+                'action'  => 'profit',
+                'message' => $total_amount,
+            ]);
+        }
+    }
+
+    private function createWallet($user, $amount)
+    {
+        Wallet::create([
+            'max_amount'     => $this->maxAmount($user->accountType->type),
+            'current_amount' => $amount,
+            'user_id'        => $user->id,
+        ]); 
+    }
+
+    private function maxAmount($type)
+    {
+        switch ($type) {
+            case 'silver':
+                return 2000;
+            case 'gold':
+                return 6500;
+            case 'platinum':
+                return 7500;
+            case 'diamond':
+                return 10500;
+            case 'doublediamond':
+                return 15500;
+            default:
+                return 2000;
         }
     }
 }

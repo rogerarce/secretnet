@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Recruit;
 
 use Illuminate\Http\Request;
+use App\Helpers\Pairing;
 use App\Helpers\ProfitShare;
 use App\Http\Requests\RecruitRegister as Recruit;
 use App\Http\Controllers\Controller;
@@ -11,6 +12,7 @@ use App\Models\User;
 use App\Models\Tree;
 use App\Models\Pins as Pin;
 use App\Models\Wallet;
+use App\Models\DirectReferral;
 
 use Auth;
 
@@ -99,6 +101,11 @@ class AccountManager extends Controller
         // Activate Pin
         $pin->update(['status' => 'active']);
 
+        // calculates pairing bonus
+        $this->pairingBonus();
+
+        $this->directReferralBonus($request->direct_referral_id);
+
         return redirect()->route('recruithome');
     }
 
@@ -155,6 +162,34 @@ class AccountManager extends Controller
     {
         $profitshare = new ProfitShare($account_type);
         $profitshare->start();
+    }
+    
+    /**
+     * Calculates the pairing bonus
+     * if applicable
+     *
+     * @return Void
+     */
+    private function pairingBonus()
+    {
+        $user = auth()->user();
+        $pairing_calculator = new Pairing($user);
+        $pairing_calculator->start();
+    }
+
+    private function directReferralBonus($user_id)
+    {
+        $user = User::find($user_id);
+        $bonus = $user->accountType->direct_referral;
+        if ($direct_referral = $user->directReferral) {
+            $direct_referral->total_earning += $bonus;
+            $direct_referral->save();
+        } else {
+            DirectReferral::create([
+                'user_id'       => $user->id,
+                'total_earning' => $bonus
+            ]);
+        }
     }
 
     private function getMaxAmount($type)
