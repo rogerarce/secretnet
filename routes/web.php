@@ -27,16 +27,11 @@ Route::group(['middleware' => 'guest'], function() {
     Route::get('checkpin', 'Admin\Pins@checkPin')->name('checkPin');
 });
 
-Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'namespace' => 'Admin'], function() {
+Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin', 'namespace' => 'Admin'], function() {
     Route::get('/', 'Home@home')->name('adminhome'); 
     Route::get('/users', 'Home@users')->name('adminusers'); 
     Route::get('/pins', 'Home@pins')->name('adminpins'); 
     Route::get('/sales', 'Home@sales')->name('adminsales'); 
-
-    Route::post('logout', function() {
-        \Auth::logout();
-        return redirect('/');
-    })->name('logout');
 
     // Business Scripts
     Route::resource('pin', 'Pins');
@@ -51,3 +46,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'namespace' => 'Recrui
 
     Route::post('register_recruit', 'AccountManager@registerRecruit')->name('registerrecruit');
 });
+
+Route::post('logout', function() {
+    \Auth::logout();
+    return redirect('/');
+})->name('logout');
