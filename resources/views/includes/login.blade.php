@@ -1,4 +1,4 @@
-<form id="loginform" class="form-horizontal hidden" action="{{ route('login') }}" method="post">
+<form id="loginform" class="form-horizontal" action="{{ route('login') }}" method="post">
     {{ csrf_field() }}
     <div class="form-group">
         <label for="">Email</label>
@@ -10,6 +10,6 @@
     </div>
     <div class="form-group">
         <button class="btn btn-info">Login</button>
-        <a href="javascript:void(0)" id="btnregister">Signup</a>
+        <a href="{{ route('register') }}" id="btnregister">Signup</a>
     </div>
 </form>
