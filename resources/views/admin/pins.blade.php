@@ -6,11 +6,23 @@
 
 <div class="row" ng-app="adminapp" ng-controller="Pins">
     <form class="form form-inline" ng-submit="generate()">
-        <select id="" class="form-control" name="account_type">
-            @foreach ($account_types as $type)
-                <option value="{{ $type->id }}">{{ ucfirst($type->type) }} - {{ $type->price }}</option>
-            @endforeach
-        </select>
+        <div class="form-group">
+            <label for="">* Account Type</label>
+            <select id="" class="form-control" name="account_type">
+                @foreach ($account_types as $type)
+                    <option value="{{ $type->id }}">{{ ucfirst($type->type) }} - {{ $type->price }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="">* Upline</label>
+            <select id="" class="form-control" name="upline_id">
+                <option selected disabled>--select--</option>
+                @foreach ($users as $user)
+                    <option value="{{ $user->id }}">{{ $user->fullName() }} - {{ $user->email }}</option>
+                @endforeach
+            </select>
+        </div>
         <button class="btn btn-primary">
             Generate Token &nbsp;
             <i class="fa fa-plus"></i>

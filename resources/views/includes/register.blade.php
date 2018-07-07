@@ -4,11 +4,11 @@
         <div class="col-md-5">
             <div class="form-group">
                 <label for="">Activation Code</label>
-                <input class="form-control" type="string" name="activation_code">
+                <input class="form-control" type="string" name="activation_code" value="{{ old('activation_code') }}">
             </div>
             <div class="form-group">
                 <label for="">Email</label>
-                <input class="form-control" type="email" name="email">
+                <input class="form-control" type="email" name="email" value="{{ old('email') }}">
             </div>
             <div class="form-group">
                 <label for="">Password</label>
@@ -16,22 +16,22 @@
             </div>
             <div class="form-group">
                 <label for="">First Name</label>
-                <input class="form-control" type="string" name="first_name">
+                <input class="form-control" type="string" name="first_name" value="{{ old('first_name') }}">
             </div>
             <div class="form-group">
                 <label for="">Last Name</label>
-                <input class="form-control" type="string" name="last_name">
+                <input class="form-control" type="string" name="last_name" value="{{ old('last_name') }}">
             </div>
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-5">
             <div class="form-group">
                 <label for="">Address</label>
-                <input class="form-control" type="string" name="address">
+                <input class="form-control" type="string" name="address" value="{{ old('address') }}">
             </div>
             <div class="form-group">
                 <label for="">Mobile #</label>
-                <input class="form-control" type="string" name="mobile">
+                <input class="form-control" type="string" name="mobile" value="{{ old('mobile') }}">
             </div>
             <div class="form-group">
                 <label for="">Account Type</label>

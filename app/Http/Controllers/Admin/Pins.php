@@ -16,7 +16,7 @@ class Pins extends Controller
      */
     public function index()
     {
-        return response()->json(Pin::all()->load('user', 'assignedTo', 'type'));
+        return response()->json(Pin::all()->load('user', 'assignedTo', 'type', 'upline'));
     }
 
     /**
@@ -32,9 +32,10 @@ class Pins extends Controller
             'status'          => 'inactive',
             'account_type_id' => $request->account_type,
             'assign_to'       => 0,
+            'upline_user'     => $request->upline_id
         ]);
 
-        return Pin::find($pin->id)->load('user', 'assignedTo', 'type');
+        return Pin::find($pin->id)->load('user', 'assignedTo', 'type', 'upline');
     }
 
     /**
