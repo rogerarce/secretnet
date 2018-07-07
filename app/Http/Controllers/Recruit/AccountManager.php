@@ -48,6 +48,10 @@ class AccountManager extends Controller
             return Toastr::error('Invalid activation key please contact admin for support');
         }
 
+        if ($pin->upline->user_type !== 'admin') {
+            $this->profitShare($pin->type);
+        }
+
         $user = User::create($user_data);
 
         $pin->update(['status' => 'active']);
@@ -57,6 +61,10 @@ class AccountManager extends Controller
         $credentials = $request->only(['email', 'password']);
             
         $this->createInitials($user);
+
+        if ($pin->upline->user_type !== 'admin') {
+            $this->directReferralBonus($pin->upline->id, $pin);
+        }
 
         if (Auth::attempt($credentials)) {
             return redirect()->intended('user');

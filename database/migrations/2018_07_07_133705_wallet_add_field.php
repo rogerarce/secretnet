@@ -14,7 +14,7 @@ class WalletAddField extends Migration
     public function up()
     {
         Schema::table('wallets', function (Blueprint $table) {
-            $table->integer('deducted')->unsigned();
+            $table->integer('deducted')->unsigned()->nullable();
         });
     }
 
