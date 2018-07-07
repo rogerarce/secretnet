@@ -8,8 +8,7 @@
             <div class="panel-heading">
                 <h4>
                     <i class="fa fa-sun"></i>
-                    <b>Direct Referral Bonus</b>
-                </h4>
+                    <b>Direct Referral Bonus</b> </h4>
             </div>
             <div class="panel-body">
                 <h1>₱ {{ $income_list['direct_referral'] }}</h1>
@@ -82,6 +81,11 @@
 @section('sidenavigation')
     @include('includes.recruit-nav')
 @endsection
+<!-- Navigation & Others -->
+@section('profile')
+    <a href="{{ route('recruitprofile') }}"><i class="fa fa-user fa-fw"></i> User Profile</a>
+@endsection
+<!-- Navigation & Others -->
 @section('title')
 TheSecretNetwork - {{ auth()->user()->fullName() }}
 @endsection

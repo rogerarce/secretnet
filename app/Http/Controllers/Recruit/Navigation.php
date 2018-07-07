@@ -63,6 +63,11 @@ class Navigation extends Controller
         return view('recruit.payout', ['payouts' => $payouts, 'total_income' => $income->totalIncome()]);
     }
 
+    public function profile()
+    {
+        return view('recruit.profile');
+    }
+
     protected function getTree($user)
     {
         return $user->load('tree','tree.left.tree.left','tree.left.tree.right','tree.right.tree.left','tree.right.tree.right');

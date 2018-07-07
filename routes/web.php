@@ -50,6 +50,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'namespace' => 'Recrui
     Route::get('tree', 'Navigation@tree')->name('recruittree');
     Route::get('recruit', 'Navigation@recruit')->name('recruitrecruit');
     Route::get('payout', 'Navigation@payout')->name('recruitpayouts');
+    Route::get('profile', 'Navigation@profile')->name('recruitprofile');
 
     Route::post('register_recruit', 'AccountManager@registerRecruit')->name('registerrecruit');
     Route::post('payout-create', 'Payout@store')->name('createpayout');
