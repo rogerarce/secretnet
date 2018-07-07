@@ -6,6 +6,7 @@ trait BreadCrumb
 {
     protected function breadCrumbHandler($user_id)
     {
+        session()->forget('breadcrumb');
         //session()->put('breadcrumbs', []);
         $bread_crumb = session()->get('breadcrumbs') ? session()->get('breadcrumbs') : [];
 
@@ -32,7 +33,9 @@ trait BreadCrumb
         $arr = [];
 
         foreach ($bread_crumb as $user_id) {
-            $arr[] = \App\Models\User::find($user_id);
+            if ($user_id) {
+                $arr[] = \App\Models\User::find($user_id);
+            }
         }
 
         return $arr;

@@ -5,9 +5,12 @@ namespace App\Helpers;
 use App\Models\User;
 use App\Models\Log as Logs;
 use App\Models\Wallet;
+use App\Traits\Logger;
 
 class ProfitShare
 {
+    use Logger;
+
     protected $account_type;
     protected $users;
 
@@ -47,19 +50,16 @@ class ProfitShare
             $total_amount = (float)$amount_per_share * (int)$shares;
             $wallet = $user->wallet;
             if ($wallet) {
-                if ($wallet->current_amount < $wallet->max_amount) {
+                $wallet_total = $wallet->current_amount + $wallet->deducted;
+                if ($wallet_total < $wallet->max_amount) {
                     $wallet->current_amount += $total_amount;
                     $wallet->save();
                 }
             } else {
                 $this->createWallet($user, $total_amount);
             }
-                
-            Logs::create([
-                'user_id' => $user->id,
-                'action'  => 'profit',
-                'message' => $total_amount,
-            ]);
+
+            $this->profit($total_amount, 'Profit Sharing Bonus', $user->id);
         }
     }
 

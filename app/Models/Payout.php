@@ -4,16 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Log extends Model
+class Payout extends Model
 {
+    protected $table = "payouts";
+
     protected $primaryKey = "id";
 
-    protected $table = "logs";
-
     protected $fillable = [
-        "action",
-        "message",
         "user_id",
+        "note",
+        "amount",
+        "admin_note",
+        "status",
     ];
 
     public function user()

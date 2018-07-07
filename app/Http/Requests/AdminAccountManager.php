@@ -3,10 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
+
 use Toastr;
 
-class RecruitRegister extends FormRequest
+class AdminAccountManager extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +15,7 @@ class RecruitRegister extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return auth()->user()->user_type == 'admin';
     }
 
     /**
@@ -27,12 +27,12 @@ class RecruitRegister extends FormRequest
     {
         return [
             'email'           => 'required|email|unique:users',
+            'activation_code' => 'required|string',
             'first_name'      => 'required|string',
             'last_name'       => 'required|string',
             'address'         => 'required|string',
             'mobile'          => 'required|string',
             'password'        => 'required|string|min:8',
-            'activation_code' => 'required|string'
         ];
     }
 

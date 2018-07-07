@@ -26,7 +26,9 @@ class TotalIncome
     public function pairingBonus()
     {
         $pairing = $this->user->pairing;
-        return $pairing->total_earned;
+        if ($pairing) {
+            return $pairing->total_earned;
+        }
     }
 
     /**
@@ -35,7 +37,9 @@ class TotalIncome
     public function packageBonus()
     {
         $package = $this->user->wallet;
-        return $package->current_amount;
+        if ($package) {
+            return $package->current_amount;
+        }
     }
 
     /**
@@ -44,6 +48,8 @@ class TotalIncome
     public function directReferralBonus()
     {
         $direct_referral = $this->user->directReferral;
-        return $direct_referral->total_earning;
+        if ($direct_referral) {
+            return $direct_referral->total_earning;
+        }
     }
 }

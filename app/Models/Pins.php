@@ -16,6 +16,7 @@ class Pins extends Model
         "user_id",
         "account_type_id",
         "assign_to",
+        "upline_user",
     ];
 
     /**
@@ -40,5 +41,10 @@ class Pins extends Model
     public function assignedTo()
     {
         return $this->belongsTo(User::class, 'assign_to', 'id');
+    }
+
+    public function upline()
+    {
+        return $this->belongsTo(User::class, 'upline_user', 'id');
     }
 }

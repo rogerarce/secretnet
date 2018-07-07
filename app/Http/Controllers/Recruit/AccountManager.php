@@ -15,6 +15,7 @@ use App\Models\Wallet;
 use App\Models\DirectReferral;
 
 use App\Traits\ConnectedTables;
+use App\Traits\Logger;;
 
 use Auth;
 use Toastr;
@@ -22,6 +23,7 @@ use Toastr;
 class AccountManager extends Controller
 {
     use ConnectedTables;
+    use Logger;
 
     private $user_info = ['email','first_name','last_name','address','mobile'];
     private $tree_info = ['position', 'direct_referral_id'];
@@ -35,20 +37,34 @@ class AccountManager extends Controller
             return redirect()->back()->withErrors(['Invalid Activation Code!']);
         }
 
-        $pin = Pin::with('type')->where('pin', $request->activation_code)->first();
+        $pin = Pin::with('type', 'upline.tree')->where('pin', $request->activation_code)->first();
 
         $user_data = $request->except(['activation_code']);
         $user_data['password'] = \Hash::make($request->password);
         $user_data['account_type'] = $pin->type->id;
         $user_data['user_type'] = 'customer';
 
+        if ($pin->upline->tree && $pin->upline->tree->left_user_id && $pin->upline->tree->right_user_id) {
+            return Toastr::error('Invalid activation key please contact admin for support');
+        }
+
+        if ($pin->upline->user_type !== 'admin') {
+            $this->profitShare($pin->type);
+        }
+
         $user = User::create($user_data);
 
         $pin->update(['status' => 'active']);
 
+        $this->handleTree($user->id, $pin->upline_user);
+
         $credentials = $request->only(['email', 'password']);
             
         $this->createInitials($user);
+
+        if ($pin->upline->user_type !== 'admin') {
+            $this->directReferralBonus($pin->upline->id, $pin);
+        }
 
         if (Auth::attempt($credentials)) {
             return redirect()->intended('user');
@@ -67,6 +83,8 @@ class AccountManager extends Controller
             } else {
                 return redirect()->intended('user');
             }
+        } else {
+            return redirect()->back();
         }
     }
 
@@ -117,7 +135,7 @@ class AccountManager extends Controller
         // calculates pairing bonus
         $this->pairingBonus();
 
-        $this->directReferralBonus($request->direct_referral_id);
+        $this->directReferralBonus($request->direct_referral_id, $pin);
 
         return redirect()->route('recruithome');
     }
@@ -190,10 +208,10 @@ class AccountManager extends Controller
         $pairing_calculator->start();
     }
 
-    private function directReferralBonus($user_id)
+    private function directReferralBonus($user_id, $pin)
     {
         $user = User::find($user_id);
-        $bonus = $user->accountType->direct_referral;
+        $bonus = $pin->type->direct_referral;
         if ($direct_referral = $user->directReferral) {
             $direct_referral->total_earning += $bonus;
             $direct_referral->save();
@@ -203,6 +221,8 @@ class AccountManager extends Controller
                 'total_earning' => $bonus
             ]);
         }
+
+        $this->profit($bonus, 'Direct Referral', $user_id);
     }
 
     private function getMaxAmount($type)
@@ -221,5 +241,34 @@ class AccountManager extends Controller
             default:
                 return 2000;
         }
+    }
+
+    private function handleTree($user_id, $upline_id)
+    {
+        $tree = Tree::where('user_id', $upline_id)->first();
+
+        if ($tree) {
+            if (!$tree->left_user_id) {
+                $tree->left_user_id = $user_id;
+                $tree->save();
+            } else if (!$tree->right_user_id) {
+                $tree->right_user_id = $user_id;
+                $tree->save();
+            } else {
+                Toasts::error('Invalid Activation key please contact admin');
+
+                return false;
+            }
+        } else {
+            $tree = Tree::create([
+                'position'           => 'left',
+                'left_user_id'       => $user_id,
+                'right_user_id'      => null,
+                'direct_referral_id' => $upline_id,
+                'user_id'            => $upline_id
+            ]);
+        }
+
+        return $tree;
     }
 }
