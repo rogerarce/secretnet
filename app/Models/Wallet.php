@@ -13,6 +13,7 @@ class Wallet extends Model
     protected $fillable = [
         "max_amount",
         "current_amount",
+        "deducted",
         "user_id",
     ];
 }

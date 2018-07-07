@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Requests\AdminAccountManager;
 use App\Http\Controllers\Controller;
+use App\Helpers\PayoutCalculator;
 
 use App\Models\User;
 use App\Models\Tree;
 use App\Models\Wallet;
 use App\Models\Pins as Pin;
+use App\Models\Payout;
 use Hash;
 
 class AccountManager extends Controller
@@ -68,6 +70,19 @@ class AccountManager extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function completePayout(Request $request, Payout $payout)
+    {
+        // calculate deductions
+        $user = $payout->user;
+        $payout_calculator = new PayoutCalculator($user, $payout);
+        $result = $payout_calculator->start();
+
+        $payout->status = 'completed';
+        $payout->save();
+
+        return redirect()->back();
     }
 
     private function handleTree($request, $user_id)

@@ -66,4 +66,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(DirectReferral::class, 'user_id', 'id');
     }
+
+    public function payout()
+    {
+        return $this->hasMany(Payout::class, 'id', 'user_id');
+    }
 }
