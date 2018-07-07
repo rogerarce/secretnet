@@ -1,0 +1,33 @@
+.box {
+  width: 130px;
+  height: 130px;
+  margin-left:auto;
+  margin-right: auto;
+  padding: 10px;
+  border-radius: 75px;
+  background: #fff;
+}
+
+.silver {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #C0C0C0;
+}
+
+.gold {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #FFD700;
+}
+
+.platinum {
+  border-style: solid;
+  border-width: 4px;
+  border-color: #e5e4e2;
+}
+
+.diamond {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #b9f2ff;
+}

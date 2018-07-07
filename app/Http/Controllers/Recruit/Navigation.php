@@ -8,6 +8,7 @@ use App\Helpers\ConnectedUsers;
 use App\Helpers\TotalIncome;
 use App\Traits\TreeBuilder;
 use App\Traits\BreadCrumb;
+use App\Models\Log as Logger;
 
 use App\Models\User;
 
@@ -21,13 +22,14 @@ class Navigation extends Controller
     public function home()
     {
         $income = new TotalIncome(auth()->user());
+        $logs = Logger::where('user_id', auth()->user()->id)->get();
         $income_list = [
             'pairing' => $income->pairingBonus(),
             'package' => money_format("%.2n", $income->packageBonus()),
             'direct_referral' => money_format("%.2n", $income->directReferralBonus()),
             'total_income' => money_format("%.2n", $income->totalIncome())
         ];
-        return view('recruit.home', ['income_list' => $income_list]);
+        return view('recruit.home', ['income_list' => $income_list, 'sys_logs' => $logs]);
     }
 
     public function pins()
