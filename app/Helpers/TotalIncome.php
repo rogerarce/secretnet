@@ -37,7 +37,9 @@ class TotalIncome
     public function packageBonus()
     {
         $package = $this->user->wallet;
-        return $package->current_amount;
+        if ($package) {
+            return $package->current_amount;
+        }
     }
 
     /**

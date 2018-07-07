@@ -8,5 +8,5 @@
     @include('includes.recruit-nav')
 @endsection
 @section('title')
-Admin
+TheSecretNetwork - {{ auth()->user()->fullName() }}
 @endsection
