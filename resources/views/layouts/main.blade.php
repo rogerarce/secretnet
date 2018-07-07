@@ -52,7 +52,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Secret Network - {{ ucfirst(auth()->user()->first_name) }}</a>
+                <a class="navbar-brand" href="/">Secret Network - {{ ucfirst(auth()->user()->first_name) }}</a>
             </div>
             <!-- /.navbar-header -->
 

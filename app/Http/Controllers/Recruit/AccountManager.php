@@ -69,6 +69,8 @@ class AccountManager extends Controller
             } else {
                 return redirect()->intended('user');
             }
+        } else {
+            return redirect()->back();
         }
     }
 
