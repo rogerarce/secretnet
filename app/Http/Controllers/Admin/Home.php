@@ -24,7 +24,7 @@ class Home extends Controller
     {
         $users = User::where('user_type','customer')->get();
         $products = Pin::where('status','active')->get();
-        $sys_logs = Logger::all();
+        $sys_logs = Logger::all()->load('user.accountType');
         return view('admin.home', [
             'users' => $users,
             'sales' => $this->getTotalSales($products),
@@ -42,6 +42,7 @@ class Home extends Controller
     {
         return view('admin.pins', [
             'account_types' => AccountType::all(),
+            'users'         => User::all(),
         ]);
     }
 

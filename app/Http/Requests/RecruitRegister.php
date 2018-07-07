@@ -26,11 +26,13 @@ class RecruitRegister extends FormRequest
     public function rules()
     {
         return [
-            'email'      => 'required|email|unique:users',
-            'first_name' => 'required|string',
-            'last_name'  => 'required|string',
-            'address'    => 'required|string',
-            'mobile'     => 'required|string'
+            'email'           => 'required|email|unique:users',
+            'first_name'      => 'required|string',
+            'last_name'       => 'required|string',
+            'address'         => 'required|string',
+            'mobile'          => 'required|string',
+            'password'        => 'required|string|min:8',
+            'activation_code' => 'required|string'
         ];
     }
 

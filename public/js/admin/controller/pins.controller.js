@@ -4,7 +4,12 @@ admin.controller('Pins', [ "$scope", "$http", function($scope, $http) {
   })
 
   $scope.generate = function() {
-    $http.post('/admin/pin', { account_type: $("select[name='account_type']").val() }).then(function(response) {
+    let data = {
+      account_type: $("select[name='account_type']").val(),
+      upline_id: $("select[name='upline_id']").val(),
+    }
+
+    $http.post('/admin/pin', data).then(function(response) {
       $scope.pins.push(response.data)
     })
   }

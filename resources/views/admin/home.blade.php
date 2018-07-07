@@ -61,8 +61,12 @@
             <ul class="list-group">
                 @foreach ($sys_logs as $log)
                     <li class="list-group-item">
-                        <div class="col-md-8">{{ $log }}</div>
-                        <div class="col-md-4">{{ $log->created_at->diffForHumans() }}</div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-8">{{ $log->user->fullName() }}: {{ ucfirst($log->user->accountType->type) }} : {{ $log->message }}</div>
+                                <div class="col-md-4">{{ $log->created_at->diffForHumans() }}</div>
+                            </div>
+                        </div>
                     </li>
                 @endforeach
             </ul>
