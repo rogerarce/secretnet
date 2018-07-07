@@ -50,7 +50,8 @@ class ProfitShare
             $total_amount = (float)$amount_per_share * (int)$shares;
             $wallet = $user->wallet;
             if ($wallet) {
-                if ($wallet->current_amount < $wallet->max_amount) {
+                $wallet_total = $wallet->current_amount + $wallet->deducted;
+                if ($wallet_total < $wallet->max_amount) {
                     $wallet->current_amount += $total_amount;
                     $wallet->save();
                 }

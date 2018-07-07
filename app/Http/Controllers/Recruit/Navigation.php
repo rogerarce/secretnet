@@ -11,6 +11,7 @@ use App\Traits\BreadCrumb;
 use App\Models\Log as Logger;
 
 use App\Models\User;
+use App\Models\Payout;
 
 use Auth;
 
@@ -53,6 +54,13 @@ class Navigation extends Controller
         $result = $connection->start(); 
         $result[] = auth()->user();
         return view('recruit.recruit', ['users' => $result]);
+    }
+
+    public function payout()
+    {   
+        $income = new TotalIncome(auth()->user());
+        $payouts = Payout::where('user_id', auth()->user()->id)->get();
+        return view('recruit.payout', ['payouts' => $payouts, 'total_income' => $income->totalIncome()]);
     }
 
     protected function getTree($user)

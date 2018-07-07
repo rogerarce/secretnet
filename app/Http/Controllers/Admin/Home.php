@@ -10,6 +10,7 @@ use App\Models\Pins as Pin;
 use App\Models\AccountType;
 use App\Models\User;
 use App\Models\Log as Logger;
+use App\Models\Payout;
 
 use App\Traits\TreeBuilder;
 use App\Traits\BreadCrumb;
@@ -71,6 +72,11 @@ class Home extends Controller
         $result = $connection->start(); 
         $result[] = auth()->user();
         return view('admin.register', ['users' => $result]);
+    }
+
+    public function payout()
+    {
+        return view('admin.payout', ['payouts' => Payout::orderBy('status')->get()]);
     }
 
     private function getTotalSales($products)
