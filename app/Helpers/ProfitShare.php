@@ -5,9 +5,12 @@ namespace App\Helpers;
 use App\Models\User;
 use App\Models\Log as Logs;
 use App\Models\Wallet;
+use App\Traits\Logger;
 
 class ProfitShare
 {
+    use Logger;
+
     protected $account_type;
     protected $users;
 
@@ -54,12 +57,8 @@ class ProfitShare
             } else {
                 $this->createWallet($user, $total_amount);
             }
-                
-            Logs::create([
-                'user_id' => $user->id,
-                'action'  => 'profit',
-                'message' => $total_amount,
-            ]);
+
+            $this->profit($total_amount, 'Profit Sharing Bonus', $user->id);
         }
     }
 

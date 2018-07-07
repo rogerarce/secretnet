@@ -15,6 +15,7 @@ use App\Models\Wallet;
 use App\Models\DirectReferral;
 
 use App\Traits\ConnectedTables;
+use App\Traits\Logger;;
 
 use Auth;
 use Toastr;
@@ -22,6 +23,7 @@ use Toastr;
 class AccountManager extends Controller
 {
     use ConnectedTables;
+    use Logger;
 
     private $user_info = ['email','first_name','last_name','address','mobile'];
     private $tree_info = ['position', 'direct_referral_id'];
@@ -117,7 +119,7 @@ class AccountManager extends Controller
         // calculates pairing bonus
         $this->pairingBonus();
 
-        $this->directReferralBonus($request->direct_referral_id);
+        $this->directReferralBonus($request->direct_referral_id, $pin);
 
         return redirect()->route('recruithome');
     }
@@ -190,10 +192,10 @@ class AccountManager extends Controller
         $pairing_calculator->start();
     }
 
-    private function directReferralBonus($user_id)
+    private function directReferralBonus($user_id, $pin)
     {
         $user = User::find($user_id);
-        $bonus = $user->accountType->direct_referral;
+        $bonus = $pin->type->direct_referral;
         if ($direct_referral = $user->directReferral) {
             $direct_referral->total_earning += $bonus;
             $direct_referral->save();
@@ -203,6 +205,8 @@ class AccountManager extends Controller
                 'total_earning' => $bonus
             ]);
         }
+
+        $this->profit($bonus, 'Direct Referral', $user_id);
     }
 
     private function getMaxAmount($type)

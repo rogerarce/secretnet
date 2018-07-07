@@ -5,8 +5,12 @@ namespace App\Helpers;
 use App\Models\User;
 use Carbon\Carbon;
 
+use App\Traits\Logger;
+
 class Pairing
 {
+    use Logger;
+
     protected $points_left;
     protected $points_right;
     protected $user;
@@ -56,6 +60,10 @@ class Pairing
         $pairing->total_earned += $bonus;
         $pairing->todays_match_count += $allowed_pairing;
         $pairing->save();
+
+        if ($bonus > 0) {
+            $this->profit($bonus, 'Pairing Bonus', $user->id);
+        }
     }
 
     private function collectLeftPoints($user)
