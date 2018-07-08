@@ -100,3 +100,7 @@ TheSecretNetwork - {{ auth()->user()->fullName() }}
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 @endsection
+<!-- Navigation & Others -->
+@section('profile')
+    <a href="{{ route('recruitprofile') }}"><i class="fa fa-user fa-fw"></i> User Profile</a>
+@endsection
