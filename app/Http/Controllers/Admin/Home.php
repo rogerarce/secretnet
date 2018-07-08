@@ -76,7 +76,12 @@ class Home extends Controller
 
     public function payout()
     {
-        return view('admin.payout', ['payouts' => Payout::orderBy('status')->get()]);
+        return view('admin.payout', ['payouts' => Payout::with('user')->orderBy('status')->get()]);
+    }
+
+    public function profile()
+    {
+        return view('admin.profile');
     }
 
     private function getTotalSales($products)

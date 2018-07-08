@@ -58,18 +58,24 @@
             <div class="panel-heading">
                 <h3>System Logs</h3>
             </div>
-            <ul class="list-group">
-                @foreach ($sys_logs as $log)
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-md-8">{{ $log->user->fullName() }}: {{ ucfirst($log->user->accountType->type) }} : {{ $log->message }}</div>
-                                <div class="col-md-4">{{ $log->created_at->diffForHumans() }}</div>
-                            </div>
-                        </div>
-                    </li>
-                @endforeach
-            </ul>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>From</th>
+                        <th>Message</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($sys_logs as $log)
+                        <tr>
+                            <td>{{ $log->user->fullName() }}</td>
+                            <td>{{ $log->message }}</td>
+                            <td>{{ $log->created_at->diffForHumans() }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
@@ -79,6 +85,16 @@
 @section('sidenavigation')
     @include('includes.admin-nav')
 @endsection
+@section('scripts')
+    <script>
+        $("table").DataTable();
+    </script>
+@endsection
+<!-- Navigation & Others -->
+@section('profile')
+    <a href="{{ route('adminprofile') }}"><i class="fa fa-user fa-fw"></i> User Profile</a>
+@endsection
+<!-- Navigation & Others -->
 @section('title')
 Admin
 @endsection

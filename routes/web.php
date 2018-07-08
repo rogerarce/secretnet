@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin', 'namespace
     Route::get('/tree', 'Home@tree')->name('admintree');
     Route::get('/register', 'Home@register')->name('adminregister');
     Route::get('/payout', 'Home@payout')->name('adminpayout');
+    Route::get('/profile', 'Home@profile')->name('adminprofile');
 
     // Business Scripts
     Route::resource('pin', 'Pins');
@@ -53,6 +54,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'namespace' => 'Recrui
     Route::get('profile', 'Navigation@profile')->name('recruitprofile');
 
     Route::post('register_recruit', 'AccountManager@registerRecruit')->name('registerrecruit');
+    Route::post('profile-update', 'AccountManager@updateProfile')->name('recruitprofileupdate');
     Route::post('payout-create', 'Payout@store')->name('createpayout');
 });
 

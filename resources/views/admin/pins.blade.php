@@ -66,6 +66,11 @@
 @section('sidenavigation')
     @include('includes.admin-nav')
 @endsection
+<!-- Navigation & Others -->
+@section('profile')
+    <a href="{{ route('adminprofile') }}"><i class="fa fa-user fa-fw"></i> User Profile</a>
+@endsection
+<!-- Navigation & Others -->
 @section('title')
 Admin - Pins
 @endsection

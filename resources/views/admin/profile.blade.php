@@ -35,32 +35,6 @@
                     <button class="btn btn-primary">Save Changes</button>
                 </form>
             </div>
-            <div class="col-md-6">
-                <div class="panel panel-info">
-                    <div class="panel-body"> <h3>Account Information</h3>
-                        <table class="table table-bordered">
-                            <tbody>
-                                <tr>
-                                    <td>Account Type</td>
-                                    <td><h4>{{ ucfirst(auth()->user()->accountType->type) }}</h4></td>
-                                </tr>
-                                <tr>
-                                    <td>My Downlines</td>
-                                    <td>{{ $downlines['total'] }}</td>
-                                </tr>
-                                <tr>
-                                    <td>My Left Group</td>
-                                    <td>{{ $downlines['left'] }}</td>
-                                </tr>
-                                <tr>
-                                    <td>My Right Group</td>
-                                    <td>{{ $downlines['right'] }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -69,7 +43,7 @@
 
 <!-- Navigation & Others -->
 @section('sidenavigation')
-    @include('includes.recruit-nav')
+    @include('includes.admin-nav')
 @endsection
 @section('title')
 TheSecretNetwork - {{ auth()->user()->fullName() }}

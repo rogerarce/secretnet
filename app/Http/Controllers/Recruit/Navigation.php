@@ -8,6 +8,7 @@ use App\Helpers\ConnectedUsers;
 use App\Helpers\TotalIncome;
 use App\Traits\TreeBuilder;
 use App\Traits\BreadCrumb;
+use App\Traits\Profile;
 use App\Models\Log as Logger;
 
 use App\Models\User;
@@ -19,6 +20,7 @@ class Navigation extends Controller
 {
     use TreeBuilder;
     use BreadCrumb;
+    use Profile;
 
     public function home()
     {
@@ -65,7 +67,10 @@ class Navigation extends Controller
 
     public function profile()
     {
-        return view('recruit.profile');
+        $downlines = $this->getDownline(auth()->user());
+        return view('recruit.profile',[
+            'downlines' => $downlines,
+        ]);
     }
 
     protected function getTree($user)
