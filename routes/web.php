@@ -11,21 +11,14 @@
 |
 */ 
 
-Route::get('/register', function () {
-    return view('guest.register', [
-        'types' => \App\Models\AccountType::all(),
-    ]);
-})->name('register');
-
-Route::get('/', function() {
-    return view('guest.login');
-})->name('login');
-
 // Guest Routes
 Route::group(['middleware' => 'guest'], function() {
     Route::post('register', 'Recruit\AccountManager@register')->name('register');
-    Route::post('login', 'Recruit\AccountManager@login')->name('login');
+    Route::post('user-login', 'Recruit\AccountManager@login')->name('login');
     Route::get('checkpin', 'Admin\Pins@checkPin')->name('checkPin');
+    Route::get('/', 'Guest@login');
+    Route::get('/login', 'Guest@login');
+    Route::get('register', 'Guest@register');
 });
 
 Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin', 'namespace' => 'Admin'], function() {
