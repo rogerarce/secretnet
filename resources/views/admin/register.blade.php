@@ -113,3 +113,8 @@
 @section('title')
 TheSecretNetwork - {{ auth()->user()->fullName() }}
 @endsection
+<!-- Navigation & Others -->
+@section('profile')
+    <a href="{{ route('adminprofile') }}"><i class="fa fa-user fa-fw"></i> User Profile</a>
+@endsection
+<!-- Navigation & Others -->

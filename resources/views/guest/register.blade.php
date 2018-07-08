@@ -44,7 +44,7 @@
         <div class="page-header"></div>
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading"><b>The Secret Networking - Registration Form</b></div>
+                <div class="panel-heading"><b>Registration Form</b></div>
                 <div class="panel-body">
                     <div class="col-md-12">
                         @include('includes.register')

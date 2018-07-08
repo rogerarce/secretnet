@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>The Secret Networking - Register</title>
+    <title>The Secret Network - Register</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -27,6 +27,7 @@
     <!-- Custom Fonts -->
     <link href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" rel="stylesheet" type="text/css">
     <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -52,7 +53,7 @@
         </div>
         <div class="col-md-4">
             <div class="panel panel-default">
-                <div class="panel-heading"><b>The Secret Networking</b></div>
+                <div class="panel-heading"><b>Login Form</b></div>
                 <div class="panel-body">
                     <div class="col-md-12">
                         @include('includes.login')
@@ -79,6 +80,8 @@
     <!-- Custom Theme JavaScript -->
     <script src="{{ asset('js/sb-admin-2.js') }}"></script>
     <script src="{{ asset('js/angular.min.js') }}"></script>
+    <script src="//cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    {!! Toastr::message() !!}
 
 </body>
 

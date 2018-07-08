@@ -84,6 +84,7 @@ class AccountManager extends Controller
                 return redirect()->intended('user');
             }
         } else {
+            \Toastr::error('Email or password is incorrect', 'Failed Login');
             return redirect()->back();
         }
     }
@@ -138,6 +139,23 @@ class AccountManager extends Controller
         $this->directReferralBonus($request->direct_referral_id, $pin);
 
         return redirect()->route('recruithome');
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = auth()->user();
+        $data = $request->all();
+        if (!empty($request->password)) {
+            $data['password'] = \Hash::make($request->password);
+        } else {
+            unset($data['password']);
+        }
+
+        $user->fill($data);
+        $user->update();
+
+        \Toastr::success('Updated profile!', 'Update');
+        return redirect()->back();
     }
 
     /**
