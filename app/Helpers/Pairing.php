@@ -40,7 +40,9 @@ class Pairing
 
         $match_counts = min($left_points, $right_points);
 
-        $unused_pairs = $match_counts - $pairing->match_count;
+        if ($pairing) {
+            $unused_pairs = $match_counts - $pairing->match_count;
+        }
 
         if ($pairing->todays_match_count == $account_type->daily_pairs) {
             return false;
