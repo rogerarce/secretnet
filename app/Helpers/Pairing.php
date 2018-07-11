@@ -56,7 +56,7 @@ class Pairing
         $allowed_pairing = min($pairing_count, $match_count);
     
         // calculate bonus
-        $bonus = ($account_type->pairing_bonus * $allowed_pairing);
+        $bonus = (150 * $allowed_pairing);
 
         $pairing->match_count += $allowed_pairing;
         $pairing->total_earned += $bonus;
