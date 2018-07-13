@@ -6,6 +6,11 @@
   padding: 10px;
   border-radius: 75px;
   background: #fff;
+  overflow: hidden;
+}
+
+.box > b {
+  font-size: 10px;
 }
 
 .silver {
