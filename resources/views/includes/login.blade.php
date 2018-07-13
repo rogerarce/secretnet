@@ -10,6 +10,5 @@
     </div>
     <div class="form-group">
         <button class="btn btn-info">Login</button>
-        <a href="{{ route('register') }}" id="btnregister">Signup</a>
     </div>
 </form>

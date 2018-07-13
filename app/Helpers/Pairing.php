@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\User;
+use App\Models\Pairing as Pairings;
 use Carbon\Carbon;
 
 use App\Traits\Logger;
@@ -11,8 +12,8 @@ class Pairing
 {
     use Logger;
 
-    protected $points_left;
-    protected $points_right;
+    protected $points_left = [];
+    protected $points_right = [];
     protected $user;
 
     public function __construct(User $user)
@@ -25,6 +26,7 @@ class Pairing
         $user = $this->user;
         $tree = $user->tree;
         $pairing = $user->pairing;
+
         $account_type = $user->accountType;
 
         //
@@ -35,8 +37,11 @@ class Pairing
         $right_user = $tree->right;
 
         //
-        $left_points = $this->collectLeftPoints($left_user);
-        $right_points = $this->collectRightPoints($right_user);
+        $this->collectLeftPoints($left_user);
+        $this->collectRightPoints($right_user);
+
+        $left_points = array_sum($this->points_left);
+        $right_points = array_sum($this->points_right);
 
         $match_counts = min($left_points, $right_points);
 
@@ -44,7 +49,7 @@ class Pairing
             $unused_pairs = $match_counts - $pairing->match_count;
         }
 
-        if ($pairing->todays_match_count == $account_type->daily_pairs) {
+        if ($pairing && $pairing->todays_match_count == $account_type->daily_pairs) {
             return false;
         }
 
@@ -63,7 +68,7 @@ class Pairing
         $pairing->todays_match_count += $allowed_pairing;
         $pairing->save();
 
-        if ($bonus > 0) {
+        if ($bonus) {
             $this->profit($bonus, 'Pairing Bonus', $user->id);
         }
     }
@@ -72,11 +77,12 @@ class Pairing
     {
         if (!$user) return;
 
-        $this->points_left += $user->accountType->shares;
+        $this->points_left[] = $user->accountType->shares;
+        echo $user->accountType->type . ' ' . $user->accountType->shares . ' Left <br>';
 
         if ($user->tree) {
             $this->collectLeftPoints($user->tree->left);
-            $this->collectLeftPoints($user->tree->right);
+            $this->collectRightPoints($user->tree->right);
         }
 
         return $this->points_left;
@@ -86,10 +92,11 @@ class Pairing
     {
         if (!$user) return;
 
-        $this->points_right += $user->accountType->shares;
+        $this->points_right[] = $user->accountType->shares;
+        echo $user->accountType->type . ' ' . $user->accountType->shares . ' Right <br>';
 
         if ($user->tree) {
-            $this->collectRightPoints($user->tree->left);
+            $this->collectLeftPoints($user->tree->left);
             $this->collectRightPoints($user->tree->right);
         }
 

@@ -27,7 +27,7 @@ class Navigation extends Controller
         $income = new TotalIncome(auth()->user());
         $logs = Logger::where('user_id', auth()->user()->id)->get();
         $income_list = [
-            'pairing' => $income->pairingBonus(),
+            'pairing' => money_format("%.2n", $income->pairingBonus()),
             'package' => money_format("%.2n", $income->packageBonus()),
             'direct_referral' => money_format("%.2n", $income->directReferralBonus()),
             'total_income' => money_format("%.2n", $income->totalIncome())

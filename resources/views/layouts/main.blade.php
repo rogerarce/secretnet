@@ -52,7 +52,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">Secret Network - {{ ucfirst(auth()->user()->first_name) }}</a>
+                <a class="navbar-brand" href="/">
+                    Secret Network - {{ ucfirst(auth()->user()->first_name) }} 
+                    {{ auth()->user()->accountType ?  "- " . ucfirst(auth()->user()->accountType->type) : null}}
+                </a>
             </div>
             <!-- /.navbar-header -->
 
