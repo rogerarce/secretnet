@@ -24,6 +24,7 @@
             <div class="box {{ $tree['first']->accountType->type }}">
                 <h1><i class="fa fa-user text-info"></i></h1>       
                 <b>{{ $tree['first']->fullName() }}</b>
+                <p>{{ ucfirst($tree['first']->accountType->type) }}</p>
             </div>
         </div>
     </div>
@@ -35,6 +36,7 @@
                 <div class="box {{ $user->accountType->type }}">
                     <h1><i class="fa fa-user"></i></h1>       
                     <b><a href="/user/tree?user_id={{ $user->id }}">{{ $user->fullName() }}</a></b>
+                    <p>{{ ucfirst($user->accountType->type) }}</p>
                 </div>
             @endif
         </div>
@@ -43,6 +45,7 @@
                 <div class="box {{ $user->accountType->type }}">
                     <h1><i class="fa fa-user"></i></h1>       
                     <b><a href="/user/tree?user_id={{ $user->id }}">{{ $user->fullName() }}</a></b>
+                    <p>{{ ucfirst($user->accountType->type) }}</p>
                 </div>
             @endif
         </div>
@@ -56,6 +59,7 @@
                     <div class="box {{ $user->accountType->type }}">
                         <h1><i class="fa fa-user"></i></h1>       
                         <b><a href="/user/tree?user_id={{ $user->id }}">{{ $user->fullName() }}</a></b>
+                        <p>{{ ucfirst($user->accountType->type) }}</p>
                     </div>
                 @endif
             </div>
@@ -64,6 +68,7 @@
                     <div class="box {{ $user->accountType->type }}">
                         <h1><i class="fa fa-user"></i></h1>       
                         <b><a href="/user/tree?user_id={{ $user->id }}">{{ $user->fullName() }}</a></b>
+                        <p>{{ ucfirst($user->accountType->type) }}</p>
                     </div>
                 @endif
             </div>
@@ -74,6 +79,7 @@
                     <div class="box {{ $user->accountType->type }}">
                         <h1><i class="fa fa-user"></i></h1>       
                         <b><a href="/user/tree?user_id={{ $user->id }}">{{ $user->fullName() }}</a></b>
+                        <p>{{ ucfirst($user->accountType->type) }}</p>
                     </div>
                 @endif
             </div>
@@ -82,6 +88,7 @@
                     <div class="box {{ $user->accountType->type }}">
                         <h1><i class="fa fa-user"></i></h1>       
                         <b><a href="/user/tree?user_id={{ $user->id }}">{{ $user->fullName() }}</a></b>
+                        <p>{{ ucfirst($user->accountType->type) }}</p>
                     </div>
                 @endif
             </div>

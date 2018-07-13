@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Helpers\ConnectedUsers;
 use App\Helpers\TotalIncome;
+use App\Helpers\Pairing;
 use App\Traits\TreeBuilder;
 use App\Traits\BreadCrumb;
 use App\Traits\Profile;
