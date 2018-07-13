@@ -124,11 +124,7 @@ class AccountManager extends Controller
             $tree = Tree::create($tree_data);
         }
 
-        Wallet::create([
-            "max_amount"     => $this->getMaxAmount($pin->type),
-            "current_amount" => 0,
-            "user_id"        => $user->id,
-        ]);
+        $this->createInitials($user);
 
         // Activate Pin
         $pin->update(['status' => 'active']);

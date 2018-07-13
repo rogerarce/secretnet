@@ -14,6 +14,7 @@
                 @endforeach
             </select>
         </div>
+        <!--
         <div class="form-group">
             <label for="">* Upline</label>
             <select id="" class="form-control" name="upline_id">
@@ -23,6 +24,7 @@
                 @endforeach
             </select>
         </div>
+        -->
         <button class="btn btn-primary">
             Generate Token &nbsp;
             <i class="fa fa-plus"></i>
