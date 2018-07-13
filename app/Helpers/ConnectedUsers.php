@@ -29,7 +29,7 @@ class ConnectedUsers
     public function getLeftConnections($left)
     {
         if ($left) {
-            $this->users[] = $left;
+            $this->users[] = $left->load('tree.left');
 
             if ($left->tree) {
                 $this->getLeftConnections($left->tree->left);
@@ -46,7 +46,7 @@ class ConnectedUsers
     public function getRightConnections($right)
     {
         if ($right) {
-            $this->users[] = $right;
+            $this->users[] = $right->load('tree.right');
 
             if ($right->tree) {
                 $this->getLeftConnections($right->tree->left);
