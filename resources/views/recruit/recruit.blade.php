@@ -53,6 +53,12 @@
                                 <input class="form-control" type="password" name="password">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2">Confirm Password</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="password" name="password_confirmation">
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <h4>Referral & Downline Positon Information</h4>

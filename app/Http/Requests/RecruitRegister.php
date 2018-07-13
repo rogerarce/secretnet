@@ -31,7 +31,7 @@ class RecruitRegister extends FormRequest
             'last_name'       => 'required|string',
             'address'         => 'required|string',
             'mobile'          => 'required|string',
-            'password'        => 'required|string|min:8',
+            'password'        => 'required|string|min:8|confirmed',
             'activation_code' => 'required|string'
         ];
     }

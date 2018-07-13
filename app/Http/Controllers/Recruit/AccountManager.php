@@ -81,6 +81,8 @@ class AccountManager extends Controller
             if ($user->user_type == 'admin') {
                 return redirect()->intended('admin');
             } else {
+                $pairing = new Pairing($user);
+                $pairing->start();
                 return redirect()->intended('user');
             }
         } else {
