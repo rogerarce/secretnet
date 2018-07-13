@@ -60,10 +60,14 @@
                         <div class="form-group">
                             <label for="" class="col-sm-4">Upline</label>
                             <div class="col-sm-8">
-                                <select class="form-control" name="upline_id">
+                                <select class="form-control" name="upline_id" id="upline">
                                     <option>--select--</option>
                                     @foreach ($users as $user)
-                                        <option value="{{ $user->id }}">{{ $user->fullName() }}</option>
+                                        <option value="{{ $user->id }}" 
+                                            data-left="{{ $user->tree ? $user->tree->left_user_id : 0 }}" 
+                                            data-right="{{ $user->tree ? $user->tree->right_user_id : 0 }}">
+                                            {{ $user->fullName() }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -71,8 +75,8 @@
                         <div class="form-group">
                             <label for="" class="col-sm-4">Downline Position</label>
                             <div class="col-sm-8">
-                                <input type="radio" name="position" value="left"> Left&nbsp;&nbsp;
-                                <input type="radio" name="position" value="right"> Right
+                                <input type="radio" name="position" value="left" id="left"> Left&nbsp;&nbsp;
+                                <input type="radio" name="position" value="right" id="right"> Right
                             </div>
                         </div>
                         <div class="form-group">
@@ -110,4 +114,26 @@ TheSecretNetwork - {{ auth()->user()->fullName() }}
 <!-- Navigation & Others -->
 @section('profile')
     <a href="{{ route('recruitprofile') }}"><i class="fa fa-user fa-fw"></i> User Profile</a>
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $("#upline").on('change', function() {
+                let left_points = $('option:selected', this).attr('data-left');
+                let right_points = $('option:selected', this).attr('data-right');
+                    
+                if (left_points > 0) {
+                    $("#left").attr('disabled', true);   
+                } else {
+                    $("#left").attr('disabled', false);   
+                }
+
+                if (right_points > 0) {
+                    $("#right").attr('disabled', true);   
+                } else {
+                    $("#right").attr('disabled', false);   
+                }
+            })
+        });
+    </script>
 @endsection

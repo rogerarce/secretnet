@@ -53,7 +53,7 @@ class Navigation extends Controller
     {
         $user = Auth::user()->load('tree','tree.left.tree','tree.right.tree');
         $connection = new ConnectedUsers($user->tree);
-        $result = $connection->start(); 
+        $result = $connection->start();
         $result[] = auth()->user();
         return view('recruit.recruit', ['users' => $result]);
     }
