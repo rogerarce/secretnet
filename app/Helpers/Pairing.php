@@ -33,6 +33,10 @@ class Pairing
         $this->checkIfStale($pairing);
 
         //
+        if (!$tree) {
+            return false;
+        }
+
         $left_user = $tree->left;
         $right_user = $tree->right;
 
@@ -82,7 +86,7 @@ class Pairing
 
         if ($user->tree) {
             $this->collectLeftPoints($user->tree->left);
-            $this->collectRightPoints($user->tree->right);
+            $this->collectLeftPoints($user->tree->right);
         }
 
         return $this->points_left;
@@ -96,7 +100,7 @@ class Pairing
         echo $user->accountType->type . ' ' . $user->accountType->shares . ' Right <br>';
 
         if ($user->tree) {
-            $this->collectLeftPoints($user->tree->left);
+            $this->collectRightPoints($user->tree->left);
             $this->collectRightPoints($user->tree->right);
         }
 
