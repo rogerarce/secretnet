@@ -27,13 +27,14 @@ class Navigation extends Controller
     {
         $income = new TotalIncome(auth()->user());
         $logs = Logger::where('user_id', auth()->user()->id)->get();
+        $downlines = $this->getDownline(auth()->user());
         $income_list = [
             'pairing' => money_format("%.2n", $income->pairingBonus()),
             'package' => money_format("%.2n", $income->packageBonus()),
             'direct_referral' => money_format("%.2n", $income->directReferralBonus()),
-            'total_income' => money_format("%.2n", $income->totalIncome())
+            'total_income' => money_format("%.2n", $income->totalIncome()),
         ];
-        return view('recruit.home', ['income_list' => $income_list, 'sys_logs' => $logs]);
+        return view('recruit.home', ['income_list' => $income_list, 'sys_logs' => $logs, 'downlines' => $downlines]);
     }
 
     public function pins()
