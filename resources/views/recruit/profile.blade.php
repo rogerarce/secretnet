@@ -29,8 +29,7 @@
                         <div><input class="form-control" type="string" name="mobile" value="{{ auth()->user()->mobile }}"></div>
                     </div>
                     <div class="form-group">
-                        <label for="">Password: </label>
-                        <div><input class="form-control" type="password" name="password"></div>
+                        <label for="">Password: </label> <div><input class="form-control" type="password" name="password"></div>
                     </div>
                     <button class="btn btn-primary">Save Changes</button>
                 </form>
@@ -46,15 +45,15 @@
                                 </tr>
                                 <tr>
                                     <td>My Downlines</td>
-                                    <td>{{ $downlines['total'] }}</td>
+                                    <td>{{ $downlines['total'] ? $downlines['total'] : 0 }} Member(s)</td>
                                 </tr>
                                 <tr>
                                     <td>My Left Group</td>
-                                    <td>{{ $downlines['left'] }}</td>
+                                    <td>{{ $downlines['left'] ? $downlines['left'] : 0 }} Member(s)</td>
                                 </tr>
                                 <tr>
                                     <td>My Right Group</td>
-                                    <td>{{ $downlines['right'] }}</td>
+                                    <td>{{ $downlines['right'] ? $downlines['right'] : 0 }} Member(s)</td>
                                 </tr>
                             </tbody>
                         </table>

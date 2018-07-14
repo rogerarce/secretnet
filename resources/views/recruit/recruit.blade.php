@@ -64,7 +64,7 @@
                         <h4>Referral & Downline Positon Information</h4>
                         <hr>
                         <div class="form-group">
-                            <label for="" class="col-sm-4">Upline</label>
+                            <label for="" class="col-sm-4">Upline / Placement ID</label>
                             <div class="col-sm-8">
                                 <select class="form-control" name="upline_id" id="upline">
                                     <option>--select--</option>
