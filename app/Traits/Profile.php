@@ -10,17 +10,20 @@ trait Profile
     protected function getDownline($user)
     {
         $tree = $user->tree;    
-        $left = $tree->left;
-        $right = $tree->right;
 
-        $this->getLeftCount($left);
-        $this->getRightCount($left);
+        if ($tree) {
+            $left = $tree->left;
+            $right = $tree->right;
 
-        return [
-            'left' => $this->leftcount,
-            'right' => $this->rightcount,
-            'total' => (int)$this->leftcount + (int)$this->rightcount
-        ];
+            $this->getLeftCount($left);
+            $this->getRightCount($left);
+
+            return [
+                'left' => $this->leftcount,
+                'right' => $this->rightcount,
+                'total' => (int)$this->leftcount + (int)$this->rightcount
+            ];
+        }
     }
 
     private function getLeftCount($left)

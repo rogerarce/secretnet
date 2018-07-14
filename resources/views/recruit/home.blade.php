@@ -3,8 +3,8 @@
 <h1 class="page-header">Dashboard</h1>
 
 <div class="row">
-    <div class="col-md-3 col-xs-12 col-lg-3">
-        <div class="panel panel-default">
+    <div class="col-md-6 col-xs-12 col-lg-6">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 <h4>
                     <i class="fa fa-sun"></i>
@@ -15,7 +15,7 @@
             </div>
         </div>  
     </div>
-    <div class="col-md-3 col-xs-12 col-lg-3">
+    <div class="col-md-6 col-xs-12 col-lg-6">
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h4>
@@ -28,7 +28,7 @@
             </div>
         </div>  
     </div>
-    <div class="col-md-3 col-xs-12 col-lg-3">
+    <div class="col-md-6 col-xs-12 col-lg-6">
         <div class="panel panel-warning">
             <div class="panel-heading">
                 <h4>
@@ -41,11 +41,14 @@
             </div>
         </div>  
     </div>
-    <div class="col-md-3 col-xs-12 col-lg-3">
-        <div class="panel panel-primary">
+    <div class="col-md-6 col-xs-12 col-lg-6">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h4>
                     <i class="fa fa-piggy-bank"></i>
+                    <span class="pull-right">
+                        <i class="fa fa-arrow-circle-right"></i> <a href="/user/payout">Request Payout</a>
+                    </span>
                     <b>Total Income</b>
                 </h4>
             </div>
@@ -56,7 +59,34 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-5">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h4>Account Summary</h4>
+            </div>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Account Type</td>
+                        <td><h4>{{ ucfirst(auth()->user()->accountType->type) }}</h4></td>
+                    </tr>
+                    <tr>
+                        <td>My Downlines</td>
+                        <td>{{ $downlines['total'] ? $downlines['total'] : 0 }} Member(s)</td>
+                    </tr>
+                    <tr>
+                        <td>My Left Group</td>
+                        <td>{{ $downlines['left'] ? $downlines['left'] : 0 }} Member(s)</td>
+                    </tr>
+                    <tr>
+                        <td>My Right Group</td>
+                        <td>{{ $downlines['right'] ? $downlines['right'] : 0 }} Member(s)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-7">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4>System Logs</h4>
