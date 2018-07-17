@@ -7,7 +7,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="panel">
             <div class="panel-body">
-                <div class="col-sm-10"><h4>You currently have <b>$ {{ money_format("%.2n", $total_income) }}</b> in your account</h4></div>
+                <div class="col-sm-10"><h4>You currently have <b>₱ {{ money_format("%.2n", $total_income) }}</b> in your account</h4></div>
                 <div class="col-sm-2"><button class="btn btn-success" data-toggle="modal" data-target="#payoutrequest">Start a Payout</button></div>
             </div>
         </div>
