@@ -15,7 +15,7 @@ trait ConnectedTables
         $this->createPairing($user);
     }
 
-    private function createWallet($user)
+    protected function createWallet($user)
     {
         Wallet::create([
             'max_amount'     => $this->maxAmount($user->accountType->type),
