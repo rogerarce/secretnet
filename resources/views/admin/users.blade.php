@@ -15,6 +15,7 @@
                     <th>Email</th>
                     <th>Account Type</th>
                     <th>Created Date</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +26,11 @@
                     <td>{{ user.email }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.created_at }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <button class="btn btn-sm btn-info" ng-click="maxProfit(user.id)">Max Profit</button>
+                        </div>
+                    </td>
                 </tr>
                 @endverbatim
             </tbody>
