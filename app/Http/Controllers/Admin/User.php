@@ -10,6 +10,7 @@ use App\Models\Wallet;
 use App\Models\Pairing;
 use App\Models\Pins as Pin;
 use App\Models\Tree;
+use App\Models\User as Users;
 use App\Models\DirectReferral;
 
 class User extends Controller
@@ -135,6 +136,13 @@ class User extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function maxProfit(Request $request, Users $user)
+    {
+        $wallet = $user->wallet;
+        $wallet->current_amount = $wallet->max_amount;
+        $wallet->save();
     }
 
     private function maxAmount($type)
