@@ -54,12 +54,13 @@ class ProfitShare
                 if ($wallet_total < $wallet->max_amount) {
                     $wallet->current_amount += $total_amount;
                     $wallet->save();
+                    $this->profit($total_amount, 'Profit Sharing Bonus', $user->id);
                 }
             } else {
                 $this->createWallet($user, $total_amount);
+                $this->profit($total_amount, 'Profit Sharing Bonus', $user->id);
             }
 
-            $this->profit($total_amount, 'Profit Sharing Bonus', $user->id);
         }
     }
 
