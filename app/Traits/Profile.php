@@ -16,40 +16,42 @@ trait Profile
             $right = $tree->right;
 
             $this->getLeftCount($left);
-            $this->getRightCount($left);
+            $this->getRightCount($right);
 
-            return [
+            $result = [
                 'left' => $this->leftcount,
                 'right' => $this->rightcount,
                 'total' => (int)$this->leftcount + (int)$this->rightcount
             ];
+
+            return $result;
         }
     }
 
-    private function getLeftCount($left)
+    private function getLeftCount($user)
     {
-        if ($left) {
+        if ($user) {
             $this->leftcount += 1;
-            if ($left->tree && $left->tree->left) {
-                $this->getLeftCount($left->tree->left);
-            }
-            if ($left->tree && $left->tree->right) {
-                $this->getLeftCount($left->tree->right);
+            $tree = $user->tree;
+            if ($tree) {
+                $left = $tree->left;
+                $right = $tree->right;
+                $this->getLeftCount($left);
+                $this->getLeftCount($right);
             }
         }
-
-        return false;
     }
 
-    private function getRightCount($right)
+    private function getRightCount($user)
     {
-        if ($right) {
+        if ($user) {
             $this->rightcount += 1;
-            if ($right->tree && $right->tree->left) {
-                $this->getRightCount($right->tree->left);
-            }
-            if ($right->tree && $right->tree->right) {
-                $this->getRightCount($right->tree->right);
+            $tree = $user->tree;
+            if ($tree) {
+                $left = $tree->left;
+                $right = $tree->right;
+                $this->getRightCount($left);
+                $this->getRightCount($right);
             }
         }
 
