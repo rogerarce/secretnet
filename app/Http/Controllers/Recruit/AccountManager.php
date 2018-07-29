@@ -156,6 +156,46 @@ class AccountManager extends Controller
         return redirect()->back();
     }
 
+    public function upgradeAccount(Request $request)
+    {
+        $pin = Pin::where('pin', $request->pin)->where('status', 'inactive')->first();
+        $user = auth()->user();
+        $wallet = $user->wallet;
+        
+        if ($pin) {
+            if ($pin->type->type == $user->accountType->type) {
+                Toastr::error('Activation Code - Account Type is the same as your current Account Type');
+                return redirect()->back();
+            }
+
+            // Increase Pairing Bonus
+            $pin_type = $pin->type;
+            $wallet->max_amount = $this->getMaxAmount($pin_type); 
+            $wallet->save();
+
+            // Account Upgrade
+            $user->account_type = $pin_type->id;
+            $user->save();
+            $referral = User::find($request->direct_referral_id);
+
+            // Direct Referral Bonus
+            if ($referral && $referral->directReferral) {
+                $current_bonus = $this->getMaxAmount($user->accountType);
+                $direct_referral = $referral->directReferral;
+                $direct_referral->total_earning = ($pin_type->direct_referral - $current_bonus);
+                $direct_referral->save();
+            }
+
+            Toastr::success('Account Upgrade Success');
+
+            return redirect()->back();
+        }
+
+        Toastr::error('Activation code not found');
+
+        return redirect()->back();
+    }
+
     /**
      *
      */
