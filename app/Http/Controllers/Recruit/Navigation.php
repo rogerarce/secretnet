@@ -34,7 +34,13 @@ class Navigation extends Controller
             'direct_referral' => money_format("%.2n", $income->directReferralBonus()),
             'total_income' => money_format("%.2n", $income->totalIncome()),
         ];
-        return view('recruit.home', ['income_list' => $income_list, 'sys_logs' => $logs, 'downlines' => $downlines]);
+        $possible_dr = User::where('id', '>=', 2)->where('id', '<=', auth()->user()->id - 1)->get();
+        return view('recruit.home', [
+            'income_list' => $income_list,
+            'sys_logs'    => $logs,
+            'downlines'   => $downlines,
+            'possible_dr' => $possible_dr,
+        ]);
     }
 
     public function pins()
