@@ -1,6 +1,9 @@
 @extends('layouts.main')
 @section('content')
-<h1 class="page-header">Dashboard</h1>
+<div class="page-header">
+    <button class="btn btn-success pull-right" data-toggle="modal" data-target="#upgradeaccount">Upgrade Account</button>
+    <h1>Dashboard</h1>
+</div>
 
 <div class="row">
     <div class="col-md-6 col-xs-12 col-lg-6">
@@ -103,6 +106,7 @@
             </ul>
         </div>
     </div>
+    @include('recruit.includes.upgrade')
 </div>
 
 @endsection

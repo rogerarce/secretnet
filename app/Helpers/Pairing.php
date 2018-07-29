@@ -82,7 +82,6 @@ class Pairing
         if (!$user) return;
 
         $this->points_left[] = $user->accountType->shares;
-        echo $user->accountType->type . ' ' . $user->accountType->shares . ' Left <br>';
 
         if ($user->tree) {
             $this->collectLeftPoints($user->tree->left);
@@ -97,7 +96,6 @@ class Pairing
         if (!$user) return;
 
         $this->points_right[] = $user->accountType->shares;
-        echo $user->accountType->type . ' ' . $user->accountType->shares . ' Right <br>';
 
         if ($user->tree) {
             $this->collectRightPoints($user->tree->left);

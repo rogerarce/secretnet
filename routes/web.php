@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'namespace' => 'Recrui
     Route::post('register_recruit', 'AccountManager@registerRecruit')->name('registerrecruit');
     Route::post('profile-update', 'AccountManager@updateProfile')->name('recruitprofileupdate');
     Route::post('payout-create', 'Payout@store')->name('createpayout');
+    Route::post('upgrade_account', 'AccountManager@upgradeAccount')->name('upgrade');
 });
 
 Route::post('logout', function() {
