@@ -9,12 +9,14 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="">Enter Activation Code:</label>
-                        <div><input class="form-control" type="text" name="pin"></div>
+                        <div><input class="form-control" type="text" name="pin" required></div>
                     </div>
                     <div class="form-group">
                         <label for="">Direct Referral <i class="mute">(select name of person who invited you)</i></label>
-                        <select id="" class="form-control" name="direct_referral">
-                            <option value="1" selected>Selected</option>
+                        <select id="" class="form-control" name="direct_referral" required>
+                            @foreach ($possible_dr as $user)
+                            <option value="{{ $user->id }}">{{ $user->fullName() }} - {{ $user->email }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">

@@ -158,7 +158,7 @@ class AccountManager extends Controller
 
     public function upgradeAccount(Request $request)
     {
-        $pin = Pin::where('pin', $request->pin)->where('status', 'inactive')->first();
+        $pin = Pin::where('pin', $request->pin)->first();
         $user = auth()->user();
         $wallet = $user->wallet;
         
@@ -173,19 +173,26 @@ class AccountManager extends Controller
             $wallet->max_amount = $this->getMaxAmount($pin_type); 
             $wallet->save();
 
-            // Account Upgrade
-            $user->account_type = $pin_type->id;
-            $user->save();
-            $referral = User::find($request->direct_referral_id);
+            $referral = User::find($request->direct_referral);
 
             // Direct Referral Bonus
             if ($referral && $referral->directReferral) {
-                $current_bonus = $this->getMaxAmount($user->accountType);
+                $current_bonus = $user->accountType->direct_referral;
                 $direct_referral = $referral->directReferral;
-                $direct_referral->total_earning = ($pin_type->direct_referral - $current_bonus);
+                $direct_referral_bonus = ($pin_type->direct_referral - $current_bonus);
+                $direct_referral->total_earning = $direct_referral_bonus;
                 $direct_referral->save();
+
+                $this->profit($direct_referral_bonus, 'Direct Referral', $request->direct_referral);
             }
 
+
+            // Account Upgrade
+            $user->account_type = $pin_type->id;
+            $user->save();
+
+            $pin->status = 'active';
+            $pin->save();
             Toastr::success('Account Upgrade Success');
 
             return redirect()->back();

@@ -28,7 +28,7 @@ class Pairing
         $pairing = $user->pairing;
 
         if (!$pairing) {
-            return false
+            return false;
         }
 
         $account_type = $user->accountType;
