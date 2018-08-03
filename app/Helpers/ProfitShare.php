@@ -34,9 +34,11 @@ class ProfitShare
 
         $profit_share_amount = $type->price * .10;
         
-        $amount_per_share = round((float)$profit_share_amount / $total_division, 2);
+        if ($total_division > 0) {
+            $amount_per_share = round((float)$profit_share_amount / $total_division, 2);
 
-        $this->startProfitShare($amount_per_share);
+            $this->startProfitShare($amount_per_share);
+        }
     }
 
     /**

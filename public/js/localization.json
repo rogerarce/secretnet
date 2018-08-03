@@ -1,0 +1,250 @@
+{
+  "Sheet1": [
+    {
+      "email": "joshualeyes.thesecret@gmail.com ",
+      "upline_email": "estradanoeljr22@gmail.com",
+      "position": "right",
+      "direct_referral": "estradanoeljr22@gmail.com",
+      "account_type": "silver"
+    },
+    {
+      "email": "ryanboombang1@gmail.com ",
+      "upline_email": "joshualeyes.thesecret@gmail.com ",
+      "position": "left",
+      "direct_referral": "joshualeyes.thesecret@gmail.com ",
+      "account_type": "silver"
+    },
+    {
+      "email": "julietcustodio@gmail.com ",
+      "upline_email": "ryanboombang1@gmail.com ",
+      "position": "left",
+      "direct_referral": "joshualeyes.thesecret@gmail.com ",
+      "account_type": "silver"
+    },
+    {
+      "email": "damianleyesiii@gmail.com ",
+      "upline_email": "julietcustodio@gmail.com ",
+      "position": "left",
+      "direct_referral": "joshualeyes.thesecret@gmail.com ",
+      "account_type": "silver"
+    },
+    {
+      "email": "well_kyxz@yahoo.com ",
+      "upline_email": "damianleyesiii@gmail.com ",
+      "position": "left",
+      "direct_referral": "joshualeyes.thesecret@gmail.com ",
+      "account_type": "silver"
+    },
+    {
+      "email": "davidcatcharro02@gmail.com  ",
+      "upline_email": "well_kyxz@yahoo.com ",
+      "position": "left",
+      "direct_referral": "joshualeyes.thesecret@gmail.com ",
+      "account_type": "silver"
+    },
+    {
+      "email": "linmarmarigomen@gmail.com  ",
+      "upline_email": "davidcatcharro02@gmail.com  ",
+      "position": "left",
+      "direct_referral": "joshualeyes.thesecret@gmail.com ",
+      "account_type": "silver"
+    },
+    {
+      "email": "benjonera123@gmail.com   ",
+      "upline_email": "linmarmarigomen@gmail.com  ",
+      "position": "left",
+      "direct_referral": "linmarmarigomen@gmail.com  ",
+      "account_type": "silver"
+    },
+    {
+      "email": "loremas123@gmail.com   ",
+      "upline_email": "benjonera123@gmail.com   ",
+      "position": "left",
+      "direct_referral": "benjonera123@gmail.com   ",
+      "account_type": "silver"
+    },
+    {
+      "email": "russellperez850@gmail.com",
+      "upline_email": "loremas123@gmail.com   ",
+      "position": "left",
+      "direct_referral": "joshualeyes.thesecret@gmail.com ",
+      "account_type": "silver"
+    },
+    {
+      "email": "rossmark16@gmail.com",
+      "upline_email": "russellperez850@gmail.com",
+      "position": "left",
+      "direct_referral": "russellperez850@gmail.com",
+      "account_type": "silver"
+    },
+    {
+      "email": "chrysjosef17@gmail.com",
+      "upline_email": "rossmark16@gmail.com",
+      "position": "left",
+      "direct_referral": "loremas123@gmail.com   ",
+      "account_type": "silver"
+    },
+    {
+      "email": "jomari.luz@gmail.com",
+      "upline_email": "chrysjosef17@gmail.com",
+      "position": "left",
+      "direct_referral": "joshualeyes.thesecret@gmail.com ",
+      "account_type": "silver"
+    },
+    {
+      "email": "nove.angelo008@gmail.com",
+      "upline_email": "jomari.luz@gmail.com",
+      "position": "left",
+      "direct_referral": "benjonera123@gmail.com   ",
+      "account_type": "silver"
+    },
+    {
+      "email": "frank.castronuevo@gmail.com",
+      "upline_email": "nove.angelo008@gmail.com",
+      "position": "left",
+      "direct_referral": "loremas123@gmail.com   ",
+      "account_type": "silver"
+    },
+    {
+      "email": "jesscruzgomez.25@gmail.com",
+      "upline_email": "frank.castronuevo@gmail.com",
+      "position": "left",
+      "direct_referral": "benjonera123@gmail.com   ",
+      "account_type": "silver"
+    },
+    {
+      "email": "Dodston6_@gmail.com-benjo",
+      "upline_email": "jesscruzgomez.25@gmail.com",
+      "position": "left",
+      "direct_referral": "benjonera123@gmail.com   ",
+      "account_type": "silver"
+    },
+    {
+      "email": "ansnormz21@gmail.com  - josh",
+      "upline_email": "Dodston6_@gmail.com-benjo",
+      "position": "left",
+      "direct_referral": "joshualeyes.thesecret@gmail.com ",
+      "account_type": "silver"
+    },
+    {
+      "email": "xioamien0925@gmail.com  - nove angelo",
+      "upline_email": "ansnormz21@gmail.com  - josh",
+      "position": "left",
+      "direct_referral": "nove.angelo008@gmail.com",
+      "account_type": "silver"
+    },
+    {
+      "email": "acquezon09@gmail.com",
+      "upline_email": "linmarmarigomen@gmail.com  ",
+      "position": "right",
+      "direct_referral": "linmarmarigomen@gmail.com  "
+    },
+    {
+      "email": "roe3418@gmail.com",
+      "upline_email": "acquezon09@gmail.com",
+      "position": "right",
+      "direct_referral": "linmarmarigomen@gmail.com  "
+    },
+    {
+      "email": "joanperote1984@gmail.com",
+      "upline_email": "roe3418@gmail.com",
+      "position": "right",
+      "direct_referral": "linmarmarigomen@gmail.com  "
+    },
+    {
+      "email": "amoyojoycecotanda@yahoo.com.ph",
+      "upline_email": "joshualeyes.thesecret@gmail.com ",
+      "position": "right",
+      "direct_referral": "joshualeyes.thesecret@gmail.com "
+    },
+    {
+      "email": "Unainte@yahoo.com ",
+      "upline_email": "amoyojoycecotanda@yahoo.com.ph",
+      "position": "right",
+      "direct_referral": "joshualeyes.thesecret@gmail.com "
+    },
+    {
+      "email": "eva.arcelo@gmail.com",
+      "upline_email": "Unainte@yahoo.com ",
+      "position": "right",
+      "direct_referral": "amoyojoycecotanda@yahoo.com.ph"
+    },
+    {
+      "email": "alfredotiongson08143@gmail.com  ",
+      "upline_email": "xioamien0925@gmail.com  - nove angelo",
+      "position": "left",
+      "direct_referral": "joshualeyes.thesecret@gmail.com ",
+      "account_type": "silver"
+    },
+    {
+      "email": "engineercaling@yahoo.com    - right side direct of alfredo",
+      "upline_email": "alfredotiongson08143@gmail.com  ",
+      "position": "right",
+      "direct_referral": "alfredotiongson08143@gmail.com  ",
+      "account_type": "diamond"
+    },
+    {
+      "email": "oskakikar@yahoo.com.ph   - alfredo left",
+      "upline_email": "alfredotiongson08143@gmail.com  ",
+      "position": "left",
+      "direct_referral": "alfredotiongson08143@gmail.com  ",
+      "account_type": "silver"
+    },
+    {
+      "email": "angelicabvalencia@gmail.com    -josh",
+      "upline_email": "oskakikar@yahoo.com.ph   - alfredo left",
+      "position": "left",
+      "direct_referral": "joshualeyes.thesecret@gmail.com ",
+      "account_type": "diamond"
+    },
+    {
+      "email": "delcabauatan@gmail.com   platinum - josh",
+      "upline_email": "angelicabvalencia@gmail.com    -josh",
+      "position": "left",
+      "direct_referral": "joshualeyes.thesecret@gmail.com ",
+      "account_type": "Platinum"
+    },
+    {
+      "email": "adrian11081994@gmail.com   - russell",
+      "upline_email": "delcabauatan@gmail.com   platinum - josh",
+      "position": "left",
+      "direct_referral": "russellperez850@gmail.com",
+      "account_type": "silver"
+    },
+    {
+      "email": "liezelgula2015@gmail.com   platinum - josh",
+      "upline_email": "adrian11081994@gmail.com   - russell",
+      "position": "left",
+      "direct_referral": "joshualeyes.thesecret@gmail.com ",
+      "account_type": "Platinum"
+    },
+    {
+      "email": "sheilanie_79@yahoo.com   - benjo",
+      "upline_email": "liezelgula2015@gmail.com   platinum - josh",
+      "position": "left",
+      "direct_referral": "benjonera123@gmail.com   ",
+      "account_type": "silver"
+    },
+    {
+      "email": "tessbueno19@gmail.com  - josh",
+      "upline_email": "sheilanie_79@yahoo.com   - benjo",
+      "position": "left",
+      "direct_referral": "joshualeyes.thesecret@gmail.com ",
+      "account_type": "silver"
+    },
+    {
+      "email": "paulandrewarambur0ac0sta@gmail.com   - lloremas",
+      "upline_email": "tessbueno19@gmail.com  - josh",
+      "position": "left",
+      "direct_referral": "loremas123@gmail.com   ",
+      "account_type": "silver"
+    },
+    {
+      "email": "jeangai2015@gmail.com  - josh",
+      "upline_email": "paulandrewarambur0ac0sta@gmail.com   - lloremas",
+      "position": "left",
+      "direct_referral": "joshualeyes.thesecret@gmail.com ",
+      "account_type": "silver"
+    }
+  ]
+}

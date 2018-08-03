@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AccountTypesSeeder::class,
             AdminSeeder::class,
-            DownlineSeeder::class,
+            //DownlineSeeder::class,
         ]);
     }
 }

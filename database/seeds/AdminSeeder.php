@@ -12,14 +12,16 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        User::firstOrCreate([
-            'email' => 'admin@admin.com',
+		User::firstOrCreate([
+            'email' => 'estradanoeljr22@gmail.com',
         ], [
-            'first_name' => 'admin',
-            'last_name' => 'admin',
-            'password' => bcrypt(1),
+            'first_name' => 'Noel',
+            'last_name' => 'Estrada',
+            'password' => bcrypt(123456789),
             'user_type' => 'admin',
-            'mobile' => '0912313123',
+            'address' => 'Mandaluyong city',
+            'mobile' => '09456721856',
+            'account_type' => 5,
         ]);
     }
 }
