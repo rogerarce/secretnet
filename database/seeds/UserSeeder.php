@@ -24,17 +24,24 @@ class UserSeeder extends Seeder
     {
         $users = collect(json_decode(file_get_contents(public_path('js/localization.json')))->Sheet1);
         foreach ($users as $user) {
+            echo "----------------------------------------" . "\n";
             $this->createUser($user);     
+            echo "----------------------------------------" . "\n";
         }
     }
 
     private function createUser($object)
     {
         $type = isset($object->account_type) ? $object->account_type : 'silver';
-        $this->profitBonus($type);
+        $max = isset($object->max) ? true : false;
+
+        if (!$max) {
+            $this->profitBonus($type);
+        }
+
         $name = explode("@", $object->email);
         $user = User::firstOrCreate([
-            'email'        => $object->email,
+            'email'        => $object->email
         ],[
             'first_name'   => $name[0],
             'last_name'    => ' ',
@@ -49,6 +56,12 @@ class UserSeeder extends Seeder
         $this->createInitials($user);
         $this->setupPosition($object->position, $object->upline_email, $user->id, $user->email);
         $this->directReferral($object->direct_referral, $type);
+
+        if ($max) {
+            $wallet = $user->wallet;
+            $wallet->current_amount = $user->wallet->max_amount;
+            $wallet->save();
+        }
     }
 
     private function createTree($user, $referral_id)
@@ -65,6 +78,7 @@ class UserSeeder extends Seeder
 
     private function profitBonus($account_type = 'silver')
     {
+        echo "Initiating profit bonus" . "\n";
         $type = AccountType::where('type', strtolower(str_replace(" ", "",$account_type)))->first();
         $profit_share = new ProfitShare($type);
         $profit_share->start();
