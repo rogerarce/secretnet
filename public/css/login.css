@@ -1,0 +1,78 @@
+/*fonts*/
+@font-face {
+   font-family: mont ;
+   src: url(fonts/Montserrat-Regular.ttf);
+}
+@font-face {
+   font-family: hara ;
+   src: url(fonts/Harabara.ttf);
+}  
+@font-face {
+   font-family: dancing ;
+   src: url(fonts/Dancing_Script.ttf);
+}
+@font-face {
+   font-family: vevey ;
+   src: url(fonts/vevey.ttf);
+}
+@font-face {
+   font-family: terminal ;
+   src: url(fonts/Terminal-Dosis-Light.ttf);
+}
+@font-face {
+   font-family: rb ;
+   src: url(fonts/RBNo2Light_a.otf);
+}
+
+
+/*login form*/
+.panel-default>.panel-heading{
+   color: #333;
+   background-color: #1abc9c;
+   border-color: #ddd;  
+}
+.btn{
+   background-color: #2ecc71;
+   border-color: #27ae60;
+   border-radius: 10px;
+   font-family: terminal;
+   font-size: 15px;
+}
+.font{
+   font-family: tahoma;
+}
+.logo img{
+   display: block;
+   margin-top: 50px;
+   margin-left: auto;
+   margin-right: auto;
+   height: 150px;
+   width: auto;
+}
+.form-control{
+   border: 2px solid #ccc;
+   border-radius: 10px;
+}
+.panel{
+   font-family: terminal;
+   font-size: 15px;
+}
+.panel-default>.panel-heading{
+   font-family: terminal;
+   font-size: 20px;
+}
+/*.body img{
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-size: cover;
+   height: auto !important;
+   width:100% !important;
+}*/
+.bgimage{
+   background-image: url("img/bg/bg2.jpg");
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-size: cover;
+   background-color: black;
+}
+/*end of log in form*/
