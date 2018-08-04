@@ -24,6 +24,8 @@
     <!-- Morris Charts CSS -->
     <link href="{{ asset('css/morris.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" rel="stylesheet" type="text/css">
     <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
@@ -38,10 +40,12 @@
 
 </head>
 
-<body>
+<body class="bgimage">
 
+    <div class="logo">
+        <div class="col-md-12"><img class="img-responsive" src="{{ asset('css/img/logo/logo1.png') }}" alt=""></div>
+    </div>
     <div id="wrapper">
-        <div class="page-header"></div>
         <div class="col-md-4">
             @if ($errors->any())
                 @foreach ($errors->all() as $error)
