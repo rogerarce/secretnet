@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin', 'namespace
     Route::resource('pin', 'Pins');
     Route::resource('account_manager', 'AccountManager');
     Route::post('manager/max_profit/{user}', 'User@maxProfit');
+    Route::post('manager/add_profit/{user}', 'User@addProfit');
     Route::resource('manager', 'User');
 
     Route::post('complete-payout/{payout}', 'AccountManager@completePayout')->name('completepayout');

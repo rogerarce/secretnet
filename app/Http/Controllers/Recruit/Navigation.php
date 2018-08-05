@@ -26,7 +26,7 @@ class Navigation extends Controller
     public function home()
     {
         $income = new TotalIncome(auth()->user());
-        $logs = Logger::where('user_id', auth()->user()->id)->get();
+        $logs = Logger::where('user_id', auth()->user()->id)->orderBy('created_at', 'DESC')->get();
         $downlines = $this->getDownline(auth()->user());
         $income_list = [
             'pairing' => money_format("%.2n", $income->pairingBonus()),
