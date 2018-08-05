@@ -29,12 +29,46 @@
                     <td>
                         <div class="btn-group">
                             <button class="btn btn-sm btn-info" ng-click="maxProfit(user.id)">Max Profit</button>
+                            <button class="btn btn-sm btn-info" ng-click="select(user.id)" data-toggle="modal" data-target="#handpayout">Add Bonus</button>
                         </div>
                     </td>
                 </tr>
                 @endverbatim
             </tbody>
         </table>
+    </div>
+
+    <div id="handpayout" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Hand Payout</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <form>
+                                <div class="form-group">
+                                    <label for="">Amount</label>
+                                    <div><input class="form-control" type="text" name="amount" ng-model="form.amount"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Add Amount to:</label>
+                                    <div>
+                                        <select id="" class="form-control" name="type" ng-model="form.type">
+                                            <option value="pairing">Pairing</option>
+                                            <option value="direct_referral">Direct Referral</option>
+                                            <option value="profit_share">Profit Sharing</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group"><button class="btn btn-primary" ng-click="updateAmount()">Submit</button></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
     <div id="adduser" class="modal fade" tabindex="-1" role="dialog">

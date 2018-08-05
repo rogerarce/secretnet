@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ConnectedTables as Connected;
+use App\Traits\Logger;
 
 use App\Models\Wallet;
 use App\Models\Pairing;
@@ -16,6 +17,7 @@ use App\Models\DirectReferral;
 class User extends Controller
 {
     use Connected;
+    use Logger;
 
     /**
      * Display a listing of the resource.
@@ -143,6 +145,28 @@ class User extends Controller
         $wallet = $user->wallet;
         $wallet->current_amount = $wallet->max_amount;
         $wallet->save();
+    }
+
+    public function addProfit(Request $request, Users $user)
+    {
+        if ($user) {
+            if ($request->type == 'pairing') {
+                $pairing = $user->pairing;
+                $pairing->total_earned += $request->amount;
+                $pairing->save();
+                $this->profit($request->amount, '(Pairing) Admin', $user->id);
+            } else if ($request->type == 'direct_referral') {
+                $direct_referral = $user->directReferral;
+                $direct_referral->total_earning += $request->amount;
+                $direct_referral->save();
+                $this->profit($request->amount, '(Direct Referral) Admin', $user->id);
+            } else if ($request->type == 'profit_share') {
+                $wallet = $user->wallet;
+                $wallet->current_amount += $request->amount;
+                $wallet->save();
+                $this->profit($request->amount, '(Profit Sharing) Admin', $user->id);
+            }
+        }
     }
 
     private function maxAmount($type)
