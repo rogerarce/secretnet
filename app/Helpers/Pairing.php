@@ -28,7 +28,12 @@ class Pairing
         $pairing = $user->pairing;
 
         if (!$pairing) {
-            return false;
+            $pairing = Pairings::create([
+                'user_id'            => $user->id,
+                'match_count'        => 0,
+                'total_earned'       => 0,
+                'todays_match_count' => 0
+            ]);
         }
 
         $account_type = $user->accountType;
