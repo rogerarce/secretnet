@@ -27,6 +27,10 @@ class Pairing
         $tree = $user->tree;
         $pairing = $user->pairing;
 
+        if (!$pairing) {
+            return false;
+        }
+
         $account_type = $user->accountType;
 
         //

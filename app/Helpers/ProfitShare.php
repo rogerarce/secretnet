@@ -30,7 +30,6 @@ class ProfitShare
 
         foreach ($users as $user) {
             $total_division += $user->accountType->shares; 
-            echo $user->email . ' ' . $user->fullName() . '<br>';
         }
 
         $profit_share_amount = $type->price * .10;
