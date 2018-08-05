@@ -36,7 +36,7 @@ class PayoutCalculator
         $pairing = $this->user->pairing;
         $remaining_balance = $pairing->total_earned;
         
-        if ($remaining_balance >= $pairing) {
+        if ($remaining_balance >= $amount) {
             $balance = $remaining_balance - $amount;
             $pairing->total_earned = $balance;
             $pairing->save();
