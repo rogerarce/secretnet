@@ -11,6 +11,7 @@ admin.controller('Users', [ "$scope", "$http", function($scope, $http) {
       param.others = getData()
       $http.post('/admin/manager', param).then(function(response) {
         $scope.users.push(response.data)
+        $(".modal").modal("hide");
       });
     }
 
