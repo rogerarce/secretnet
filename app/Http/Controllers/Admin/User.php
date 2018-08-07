@@ -85,7 +85,7 @@ class User extends Controller
         $max_amount = $this->maxAmount($new_user->accountType->type);
         Wallet::create([
             'max_amount'     => $max_amount,
-            'current_amount' => $request->others['profitshare'] == 'max' ? $max_amount : 0,
+            'current_amount' => isset($request->others['profitshare']) && $request->others['profitshare'] == 'max' ? $max_amount : 0,
             'user_id'        => $new_user->id,
         ]); 
 

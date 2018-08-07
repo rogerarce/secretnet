@@ -122,7 +122,7 @@
                                     <label for="">Upline ID</label>
                                     <div>
                                         <select id="uplineid" class="form-control" name="upline_id">
-                                            @foreach (App\Models\User::where('user_type', 'customer')->get() as $user)
+                                            @foreach (App\Models\User::all() as $user)
                                             <option value="{{ $user->id }}">{{ $user->fullName() }}</option>
                                             @endforeach
                                         </select>
@@ -145,7 +145,7 @@
                                     <label for="">Direct Referral</label>
                                     <div>
                                         <select id="directref" class="form-control" name="direct_referral_id">
-                                            @foreach (App\Models\User::where('user_type', 'customer')->get() as $user)
+                                            @foreach (App\Models\User::all() as $user)
                                             <option value="{{ $user->id }}">{{ $user->fullName() }}</option>
                                             @endforeach
                                         </select>
